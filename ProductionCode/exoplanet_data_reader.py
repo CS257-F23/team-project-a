@@ -71,6 +71,6 @@ class exoplanetAnalyzer:
         
 
 if __name__ == "__main__" : 
-    exoplanetDictionary = take_exoplanet_data('ExoplanetSimplifiedData.csv')
+    exoplanetDictionary = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
     exoplanetFinder = exoplanetAnalyzer(exoplanetDictionary)
     exoplanetFinder.print_planet_info('14 Her b')
