@@ -1,5 +1,4 @@
 from math import *
-from exoplanet_data_reader import *
 import csv 
 
 def take_exoplanet_data(exoplanetData) :
