@@ -101,16 +101,19 @@ class Goldilocks_Determiner:
     def __init__(self) -> None:
         pass
 
+    def __init__(self, dict):
+        self.exoplanetDictionary = dict
+
     def get_stellar_lum(self, planet_name):
         """ Takes planet name and returns it's stellar luminosity"""
-        planet_info = exoplanetDictionary[planet_name]
+        planet_info = self.exoplanetDictionary[planet_name]
         stellar_lum = 10 ** float(planet_info[13])
         
         return float(stellar_lum)
 
     def get_sm_axis(self, planet_name):
         """ Takes planet name and returns it's semi-major axis"""
-        planet_info = exoplanetDictionary[planet_name]
+        planet_info = self.exoplanetDictionary[planet_name]
         sm_axis = planet_info[8]
         
         return float(sm_axis)
