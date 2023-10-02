@@ -11,7 +11,7 @@ class TestCommandLineInterpreter(unittest.TestCase):
 
 
     def test_run_planet_info_valid(self):
-        planet_name = "Earth"
+        planet_name = "11 Com b"
         result = self.cli.run_planet_info(planet_name)
         self.assertIn(planet_name, result)
 
@@ -23,8 +23,10 @@ class TestCommandLineInterpreter(unittest.TestCase):
 
 
 
+
     def test_run_habitable_planets(self):
-        planet_name
+        result = self.cli.run_habitable_planets()
+        self.assertIsInstnce(result, list)
 
     def test_run_goldilocks_planet_outside(self):
 
