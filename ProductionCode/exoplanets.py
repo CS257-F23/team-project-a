@@ -152,12 +152,14 @@ class Goldilocks_Determiner:
         planet_stellar_dist = self.get_sm_axis(planet_name)
         inner = self.determine_goldilocks_inner(planet_name)
         outer =  self.determine_goldilocks_outer(planet_name)
+
         if inner < planet_stellar_dist < outer:
             return True
         else:
             return False
         
     def print_goldilocks_zone(self, planet_name):
+        " Takes planet name and prints a nice message about if it is in the goldilocks zone"
         if self.is_in_goldilocks_zone(planet_name):
             print(planet_name, 'is in the goldilocks zone! (by Solar Equivalent AU)')
         else:
@@ -178,16 +180,19 @@ class Habitable_Finder:
         """
         self.exoplanetDictionary = dict
 
-    def create_list(self):
+    def create_habitable_list(self):
+        "Creates a list of habitable planets using is_in_goldilocks_zone and iterating through the dictionary"
         habitable_planets = []
         goldilocks_det = Goldilocks_Determiner(self.exoplanetDictionary)
         for planet in self.exoplanetDictionary:
             if goldilocks_det.is_in_goldilocks_zone(planet):
                 habitable_planets.append(planet)
+
         return habitable_planets
     
-    def print_list(self):
-        list = self.create_list()
+    def print_habitable_list(self):
+        "Prints the list of habitable planets"
+        list = self.create_habitable_list()
         print("The habitable planets (by Solar Equivalent AU) found in this database are")
         for planet in list:
             print(planet)
@@ -218,16 +223,17 @@ class Command_line_interpreter:
         goldilocks.print_goldilocks_zone(planet_name)
     
     def run_habitable_planets(self):
+        " Runs print_habitable_list"
         hab_finder = Habitable_Finder(self.exoplanetDictionary)
-        hab_finder.print_list()
+        hab_finder.print_habitable_list()
 
         
     def run_specified_arg(self):
-        " If first arg is valid, runs the specified function, else prints usage statement"
+        " If args are valid, runs the specified function, else prints usage statement"
         if sys.argv[1] == "--habitable_planets":
             self.run_habitable_planets()
 
-        elif len(sys.argv) > 3: 
+        elif len(sys.argv) >= 3: 
             if sys.argv[1] == "--planet_info":
                 self.run_planet_info(sys.argv[2])
 
@@ -235,7 +241,7 @@ class Command_line_interpreter:
                 self.run_goldilocks_planet(sys.argv[2])
 
         else:
-            print("exoplanet.py Usage: usage statement 2")
+            print("exoplanet.py Usage: usage statement")
 
 
 def main():
