@@ -1,5 +1,5 @@
 from load_data import take_exoplanet_data
-from exoplanetAnalyzer import exoplanetAnalyzer
+from PlanetAnalyzer import exoplanetAnalyzer
 from Goldilocks import Goldilocks_Determiner
 from HabitablePlanets import Habitable_Finder
 
