@@ -1,7 +1,7 @@
 from Goldilocks import Goldilocks_Determiner
 
 class Habitable_Finder:
-    def __init__(self) -> None:
+    def __init__(self):
         """
         Constructor for a Habitable Finder.
         Uses an empty dictionary in place of a given one. 
