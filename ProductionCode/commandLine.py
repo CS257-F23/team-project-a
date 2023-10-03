@@ -1,5 +1,6 @@
 import argparse
 from exoplanets import exoplanetAnalyzer, Goldilocks_Determiner, take_exoplanet_data, Habitable_Finder
+# -*- coding: utf-8 -*-
 
 
 def main():
@@ -24,7 +25,8 @@ def main():
     args = parser.parse_args()
 
     if args.planet_info:
-        exoplanetFinder.print_planet_info(args.planet_info)
+        exo_analyzer.create_dictionary_from_csv('Data/ExoplanetSimplifiedData.csv')
+        exo_analyzer.print_planet_info(args.planet_info)
     elif args.distance_range_from_Earth:
         pass
     elif args.goldilocks_planet:

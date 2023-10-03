@@ -45,13 +45,16 @@ def take_exoplanet_data(exoplanetData) :
                 
 
 class exoplanetAnalyzer:
-    def __init__(self):
+    def __init__(self, dictionary=None):
         """
         Constructor for an Exoplanet Analyzer.
         Uses an empty dictionary in place of a given one. 
         """
-        self.exoplanetDictionary = {}
-    
+        if dictionary is None:
+            self.exoplanetDictionary = {}
+        else:
+            self.exoplanetDictionary = dictionary
+
     def __init__(self, dictionary): 
         """
         Constructor for an Exoplanet Analyzer.
@@ -99,7 +102,7 @@ class exoplanetAnalyzer:
         
 
 class Goldilocks_Determiner:
-    def __init__(self) -> None:
+    def __init__(self):
         """
         Constructor for a Goldilocks Determiner.
         Uses an empty dictionary in place of a given one. 
@@ -166,7 +169,7 @@ class Goldilocks_Determiner:
             print(planet_name, 'is not in the goldilocks zone (by Solar Equivalent AU).')
 
 class Habitable_Finder:
-    def __init__(self) -> None:
+    def __init__(self):
         """
         Constructor for a Habitable Finder.
         Uses an empty dictionary in place of a given one. 
@@ -203,6 +206,6 @@ if __name__ == "__main__" :
     exo_analyzer = exoplanetAnalyzer(exoplanetDictionary)
     gold_det = Goldilocks_Determiner(exoplanetDictionary)
     hab_finder = Habitable_Finder(exoplanetDictionary)
-    exo_analyzer.print_planet_info('WASP-41 c')
-    gold_det.print_goldilocks_zone('14 Her b')
-    hab_finder.print_habitable_list()
+    #exo_analyzer.print_planet_info('WASP-41 c')
+    #gold_det.print_goldilocks_zone('14 Her b')
+    #hab_finder.print_habitable_list()
