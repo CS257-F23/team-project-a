@@ -4,7 +4,7 @@ from Goldilocks import Goldilocks_Determiner
 from HabitablePlanets import Habitable_Finder
 
 class Command_line_interpreter:
-    def __init__(self) -> None:
+    def __init__(self):
         """
         Constructor for a Command Line Interpreter.
         Uses an empty dictionary in place of a given one. 
