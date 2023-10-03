@@ -1,7 +1,7 @@
 from math import *
 
 class Goldilocks_Determiner:
-    def __init__(self) -> None:
+    def __init__(self):
         """
         Constructor for a Goldilocks Determiner.
         Uses an empty dictionary in place of a given one. 
