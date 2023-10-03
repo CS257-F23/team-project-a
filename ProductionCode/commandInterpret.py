@@ -33,6 +33,10 @@ class Command_line_interpreter:
         hab_finder = Habitable_Finder(self.exoplanetDictionary)
         hab_finder.print_habitable_list()
 
+    def print_usage_statement():
+        print("Usage: ProductionCode/exoplanets.py", "[--planet_info {planet_name}]",
+             "\n" + '                                   ', "[--goldilocks_planet {planet_name}]",
+             "\n" + '                                   ', "[--habitable_planets]")
         
     def run_specified_arg(self):
         " If args are valid, runs the specified function, else prints usage statement"
@@ -47,7 +51,7 @@ class Command_line_interpreter:
                 self.run_goldilocks_planet(sys.argv[2])
             
             else:
-                print("exoplanet.py Usage: usage statement")
+                self.print_usage_statement()
 
         else:
-            print("exoplanet.py Usage: usage statement")
+            self.print_usage_statement()
