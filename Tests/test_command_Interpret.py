@@ -1,5 +1,8 @@
 import unittest
-from commandInterpret import Command_line_interpreter
+import argparse
+from Goldilocks import Goldilocks_Determiner
+from HabitablePlanets import Habitable_Finder
+from PlanetAnalyzer import exoplanetAnalyzer
 from load_data import take_exoplanet_data
 
 class TestCommandLineInterpreter(unittest.TestCase):
