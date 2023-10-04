@@ -7,13 +7,18 @@ We will be using The NASA Exoplanet Archive.
 **Metadata:**
 
 [URL:](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PSCompPars)
+
 Date Downloaded: 9/24/2023
+
 Authorship: IPAC, Division of Physics, Mathematics, and Astronomy at Caltech.
+
 Time period, geography, and scope covered: 
 [Location of the dataset overview information:](https://exoplanetarchive.ipac.caltech.edu/docs/data.html)
 [Location of technical documentation:](https://exoplanetarchive.ipac.caltech.edu/applications/DocSet/index.html?doctree=/docs/docmenu.xml&startdoc=item_1_01)
+
 Data formats: Excel sheet, .csv 
 [Terms of Use:](https://exoplanetarchive.ipac.caltech.edu/docs/privacy.html)
+
 Suggested Citation: 
 This research has made use of the NASA Exoplanet Archive, which is operated by the California Institute of Technology, under contract with the National Aeronautics and Space Administration under the Exoplanet Exploration Program.
 
@@ -49,12 +54,26 @@ Palmy:
 
 **Team Member Roles:**
 We will divide up this project and capitalize on each member's strengths by following the following roles:
+
 Palmy - Mission Control: Coordinate team missions (sprints) and communications between team members.
+
 Allie - Professional Astrophysicist: Rationalize the relevance of planetary system data presented, as it pertains to the specific use cases. 
+
 Jack - ISS Engineer: Handle user-facing challenges, and safety concerns (debugging). 
+
 Nicholas - Full-stack Cosmonaut:  Jack-of-all-trades, mainly responsible for ensuring code is well-documented and exploring the depths of data offered in the exoplanet archive.
 
 In addition, each team member will be a part of the space crew, a base role that includes responsibilities to collaborate and write efficient code.
+
+**Specific Features Which Team Members Will Focus On**
+
+Palmy - User interface (command line and flask accessibility)
+
+Allie - Goldilocks planet and habitable planet features
+
+Jack - Tests and additional responsibilites as required
+
+Nicholas - Load data and get planet info features
 
 **Team Rules**
 
