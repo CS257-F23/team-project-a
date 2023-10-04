@@ -1,6 +1,6 @@
 import unittest
 from commandInterpret import Command_line_interpreter
-from load_data import take_exoplanet_data
+from ProductionCode.load_data import take_exoplanet_data
 
 class TestCommandLineInterpreter(unittest.TestCase):
 

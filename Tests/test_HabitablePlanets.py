@@ -1,6 +1,6 @@
 import unittest
 
-from HabitablePlanets import Habitable_Finder
+from ProductionCode.HabitablePlanets import Habitable_Finder
 
 #test stuff
     #exoplanetDictionary = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
