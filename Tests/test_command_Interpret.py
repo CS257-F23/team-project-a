@@ -1,7 +1,9 @@
 import unittest
-from commandInterpret import Command_line_interpreter
+import argparse
+from ProductionCode.Goldilocks import Goldilocks_Determiner
+from ProductionCode.HabitablePlanets import Habitable_Finder
+from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
 from ProductionCode.load_data import take_exoplanet_data
-
 class TestCommandLineInterpreter(unittest.TestCase):
 
     @classmethod
@@ -102,3 +104,10 @@ class TestPlanetMethods(unittest.TestCase):
         result = self.cli.run_habitable_planets()
         self.assertIsInstance(result, list)
 
+    def test_extract_info_and_goldilocks_intergration(self):
+        planet_name = "Kepler-186 f"
+        info_result = self.chi.run_planet_info(planet_name)
+        self.assertIn(planet_name, info_result)
+        goldilocks_status = self.cli.run_goldilocks_planet(planet_name)
+        self.assertEqual(goldilocks_status, "Planet is inside the goldilocks zone")
+        
