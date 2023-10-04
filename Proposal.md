@@ -23,7 +23,8 @@ Suggested Citation:
 This research has made use of the NASA Exoplanet Archive, which is operated by the California Institute of Technology, under contract with the National Aeronautics and Space Administration under the Exoplanet Exploration Program.
 
 2-4 interesting/meaningful ways that a user could interact with the data
-- Create an interface that synthesizes exoplanet data in order to   allow users to quickly view planets based on desired parameters (i.e. potentially able to support extraterrestrial life). 
+- Create an interface that synthesizes exoplanet data in order to   allow users to quickly view planets based on desired parameters (i.e. potentially able to support extraterrestrial life).
+ 
 - Use the data about the semi-major axis of each planet (average distance from planet to its star) to determine what planets are in the “Goldilocks Zone” and are thus potentially habitable. Allow the user to explore a list of these planets.
 - Allow the user to input the name of a planet and view an easily digestible amount of pertinent information about said planet.
 
