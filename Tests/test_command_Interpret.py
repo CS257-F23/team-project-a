@@ -107,7 +107,8 @@ class TestPlanetMethods(unittest.TestCase):
 
     def test_extract_info_and_goldilocks_intergration(self):
         planet_name = "Kepler-186 f"
-        info_result = self.chi.run_planet(planet_name)
+        info_result = self.chi.run_planet_info(planet_name)
         self.assertIn(planet_name, info_result)
         goldilocks_status = self.cli.run_goldilocks_planet(planet_name)
-        info_result = self.chi.run_planet(goldilocks_status, "Planet is inside the goldilocks zone")
+        self.assertEqual(goldilocks_status, "Planet is inside the goldilocks zone")
+        
