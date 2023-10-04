@@ -1,9 +1,9 @@
 import unittest
 import argparse
-from Goldilocks import Goldilocks_Determiner
-from HabitablePlanets import Habitable_Finder
-from PlanetAnalyzer import exoplanetAnalyzer
-from load_data import take_exoplanet_data
+from ProductionCode.Goldilocks import Goldilocks_Determiner
+from ProductionCode.HabitablePlanets import Habitable_Finder
+from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
+from ProductionCode.load_data import take_exoplanet_data
 
 
 class TestPlanetMethods(unittest.TestCase):
