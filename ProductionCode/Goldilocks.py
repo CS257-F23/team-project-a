@@ -61,7 +61,7 @@ class Goldilocks_Determiner:
             return False
         
     def print_goldilocks_zone(self, planet_name):
-        " Takes planet name and prints a nice message about if it is in the goldilocks zone"
+        """ Takes planet name and prints a nice message about if it is in the goldilocks zone"""
         if self.is_in_goldilocks_zone(planet_name):
             print(planet_name, 'is in the goldilocks zone! (by Solar Equivalent AU)')
         else:
