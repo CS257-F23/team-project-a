@@ -1,14 +1,14 @@
 import argparse
-from Goldilocks import Goldilocks_Determiner
-from HabitablePlanets import Habitable_Finder
-from PlanetAnalyzer import exoplanetAnalyzer
-from load_data import take_exoplanet_data
+from ProductionCode.Goldilocks import Goldilocks_Determiner
+from ProductionCode.HabitablePlanets import Habitable_Finder
+from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
+from ProductionCode.load_data import take_exoplanet_data
 # -*- coding: utf-8 -*-
 
 exoplanet_data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
 
 def parse_command_line():
-    """This is a docstring"""
+    """Parses command line and returns list of parsed args"""
     parser = argparse.ArgumentParser(description='Exoplanet Data Analyzer')
 
     #look up info about an exoplanet by its name
@@ -37,24 +37,24 @@ def verify_name_in_database(planet_name):
 
 
 def run_planet_info(args):
-    """this is another docstring, wow"""
+    """Takes list of command line args, if the given planet is the dataset, runs print_planet_info on it"""
     if verify_name_in_database(args.planet_info):
         exo_analyzer = exoplanetAnalyzer(exoplanet_data)
         exo_analyzer.print_planet_info(args.planet_info)
 
 def run_goldilocks_planet(args):
-    """whaaaat more docstrings???"""
+    """Takes list of command line args, if the given planet is the dataset, runs print_goldilocks_zone on it"""
     if verify_name_in_database(args.goldilocks_planet):
         goldilocks_determiner = Goldilocks_Determiner(exoplanet_data)
         goldilocks_determiner.print_goldilocks_zone(args.goldilocks_planet)
 
 def run_habitable_planets():
-    """"nope i give up on docstrings"""
+    """"Runs print_habitable_list"""
     habitable_finder = Habitable_Finder(exoplanet_data)
     habitable_finder.print_habitable_list()
 
 def main():
-    """I refactored this so its now in more functions, yay"""
+    """Parses command line arguments and runs the correct function based on the given args"""
     args = parse_command_line()
 
     if args.planet_info:
