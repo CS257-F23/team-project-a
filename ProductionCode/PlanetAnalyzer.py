@@ -46,10 +46,15 @@ class exoplanetAnalyzer:
             s += 1 
         return formatedInfoString
     
-    def print_planet_info(self, planetName):
-        """ Takes planet name and prints all the info about it. """
+    def get_formatted_planet_info(self, planetName):
+        "Takes planet name and returns a list of info about that planet, formatted for printing."
         exoplanetInfo = self.get_planet_info(planetName)
         formatedExoplanetInfo = self.format_planet_info(exoplanetInfo)
+        return(formatedExoplanetInfo)
+    
+    def print_planet_info(self, planetName):
+        """ Takes planet name and prints all the info about it. """
+        formatedExoplanetInfo = self.get_formatted_planet_info(planetName)
         print(formatedExoplanetInfo)
 
         
