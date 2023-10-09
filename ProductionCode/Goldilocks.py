@@ -22,7 +22,7 @@ class Goldilocks_Determiner:
             stellar_lum = 10 ** float(planet_info[13])
             return float(stellar_lum)
         else:
-            return 0 #if no data available, keeps planet out of zone
+            return 0 # if no data available, keeps planet out of zone
 
     def get_sm_axis(self, planet_name):
         """ Takes planet name and returns it's semi-major axis"""
@@ -31,7 +31,7 @@ class Goldilocks_Determiner:
             sm_axis = planet_info[8]
             return float(sm_axis)
         else:
-            return -1 #if no data available, keeps planet out of zone
+            return -1 # if no data available, keeps planet out of zone
 
     def determine_goldilocks_inner(self, planet_name):
         """ Takes planet name and uses returns an ordered pair (inner, outer) bound"""
@@ -61,7 +61,7 @@ class Goldilocks_Determiner:
             return False
         
     def print_goldilocks_zone(self, planet_name):
-        " Takes planet name and prints a nice message about if it is in the goldilocks zone"
+        """ Takes planet name and prints a nice message about if it is in the goldilocks zone"""
         if self.is_in_goldilocks_zone(planet_name):
             print(planet_name, 'is in the goldilocks zone! (by Solar Equivalent AU)')
         else:

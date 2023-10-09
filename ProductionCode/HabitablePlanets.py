@@ -1,4 +1,4 @@
-from Goldilocks import Goldilocks_Determiner
+from ProductionCode.Goldilocks import Goldilocks_Determiner
 
 class Habitable_Finder:
     def __init__(self):
