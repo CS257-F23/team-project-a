@@ -8,7 +8,7 @@ class TestHomepage(unittest.TestCase):
         """Tests that the homepage route gives the correct string"""
         self.app = app.test_client()
         response = self.app.get('/', follow_redirects=True)
-        self.assertEqual(b"Welcome to the exoplanet project! To look up planet info, use /planet_info/planet_name and to check goldilocks zone use /goldilocks_planet/planet_name", response.data)
+        self.assertIn(b"Use underscores in place of spaces.", response.data)
 
 class TestPlanetInfo(unittest.TestCase):
     def test_14_Her_b_info_route(self):
@@ -28,14 +28,25 @@ class TestGoldilocksPlanet(unittest.TestCase):
         """Test that using 14 Her b with the goldilocks_planet route outputs the correct string"""
         self.app = app.test_client()
         response = self.app.get('/goldilocks_planet/14 Her b', follow_redirects=True)
-        self.assertEqual(b'14 Her b is not in the goldilocks zone (by Solar Equivalent AU).', response.data)
+        self.assertEqual(b'14 Her b is not in the Goldilocks Zone. (by Solar Equivalent AU)', response.data)
     
     def test_ups_And_d_goldilocks_route(self):
         """Test that using ups And d with the goldilocks_planet route outputs the correct string"""
         self.app = app.test_client()
         response = self.app.get('/goldilocks_planet/ups And d', follow_redirects=True)
-        self.assertEqual(b'ups And d is in the goldilocks zone! (by Solar Equivalent AU)', response.data)
+        self.assertEqual(b'ups And d is in the Goldilocks Zone! (by Solar Equivalent AU)', response.data)
 
+class TestErrorMessages(unittest.TestCase):
+    def test_404(self):
+        """Test that the 404 message appears when a nonexistant url is entered."""
+        self.app = app.test_client()
+        response = self.app.get('/gildilicks_plinet/down_or_d', follow_redirects=True)
+        self.assertIn(b'far out in space, buddy!', response.data)
+
+    def test_404(self):
+        """Test that the 500 message appears when the code breaks."""
+        response = page_not_found(500)
+        self.assertIn(b'Housten we have a problem', response)    
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,21 +1,80 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from ProductionCode.Goldilocks import Goldilocks_Determiner
 from ProductionCode.load_data import take_exoplanet_data
+from ProductionCode.PlanetAnalyzer import *
 
 
 app = Flask(__name__)
-exoplanet_data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
-goldilocks = Goldilocks_Determiner(exoplanet_data)
 
+def underscores_to_spaces(underscored_string):
+    """ 
+    Takes a string and converts all underscores in it to spaces
+    Param: string
+    Returns: string
+    """
+    better_string =''
+    for character in underscored_string:
+        if character == '_':
+            better_string = better_string + " "
+        else:
+            better_string = better_string + character
+    return better_string
+
+#Default route
 @app.route('/')
-def index():
-    return render_template('index.html')
+def homepage():
+    """A homepage route for the app. No parameters."""
+    #Gives info for how to navigate the app
+    #Info written in the form of a html template  
+    return render_template('homepage.html')
 
-@app.route('/check_goldilocks', methods=['POST'] )
-def check_goldilocks():
-    planet_name = request.form.get('planet_name')
-    result = goldilocks.is_in_goldilocks_zone(planet_name)
-    return render_template ('result.html', planet_name = planet_name, result = result)
+#Route with one parameter that shows planet info
+@app.route('/check_goldilocks''/<planet_name>', strict_slashes=False)
+def check_goldilocks(planet_name):
+    """ 
+    Takes a planet name and creates a web page that shows if that planet is in the Goldilocks Zone
+    Param: string
+    Returns: string
+    """
+    exoplanet_data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
+    fixed_planet_name = underscores_to_spaces(planet_name)
+    goldilocks_analyzer = Goldilocks_Determiner(exoplanet_data)
+    result = goldilocks_analyzer.is_in_goldilocks_zone(fixed_planet_name)
+
+    #Change the html input based on if the planet is in the Goldilocks Zone
+    if result == True:
+        return render_template ('goldilocks_result.html', planet_name = planet_name,  
+                                result = "is in the Goldilocks Zone! (by Solar Equivalent AU)")
+    else:
+        return render_template ('goldilocks_result.html', planet_name = planet_name, 
+                                result = "is not in the Goldilocks Zone. (by Solar Equivalent AU)")
+
+#Route with one parameter that shows planet info
+@app.route('/planet_info''/<planet_name>', strict_slashes=False)
+def get_cell(planet_name):
+    """ 
+    Takes a planet name and creates a web page with that planet's info
+    Param: string
+    Returns: string
+    """
+    exoplanet_data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
+    fixed_planet_name = underscores_to_spaces(planet_name)
+    exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data)
+    exoplanet_info = exoplanet_analyzer.get_formatted_planet_info(fixed_planet_name)
+
+    return exoplanet_info
+
+#Route for errors
+@app.errorhandler(404)
+def page_not_found(e):
+    """Returns a 404 message"""
+    return render_template ('404.html')
+
+#Route for errors
+@app.errorhandler(500)
+def page_not_found(e):
+    """Returns an error message"""
+    return render_template ('500.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
