@@ -5,6 +5,8 @@ def take_exoplanet_data(exoplanetData) :
     Takes a csv file of exoplanet data and returns a 
     dictionary of planets keyed to lists containing 
     all the info about them. 
+    Param: string
+    Returns: dictionary
     """
     #Make an empty dictionary
     exoplanetsByName = {}
