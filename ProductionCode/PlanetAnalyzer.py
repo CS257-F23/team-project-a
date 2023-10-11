@@ -1,14 +1,17 @@
 from ProductionCode.load_data import take_exoplanet_data
 
 class exoplanetAnalyzer:
-    def __init__(self):
+    def __init__(self, dictionary=None):
         """
         Constructor for an Exoplanet Analyzer.
-        Uses an empty dictionary in place of a given one. 
-        Param: none
+        Uses the given dictionary or an empty one if not provided.
+        Param: dictionary (optional)
         Returns: none
         """
-        self.exoplanetDictionary = {}
+        if dictionary is None:
+            self.exoplanetDictionary = {}
+        else:
+            self.exoplanetDictionary = dictionary
     
     def __init__(self, dictionary): 
         """
@@ -19,14 +22,7 @@ class exoplanetAnalyzer:
         """
         self.exoplanetDictionary = dictionary
 
-    def create_dictionary_from_csv(self, file):
-        """ 
-        Takes a csv file of planet info,
-        and saves it as a dictionary for the Exoplanet Analyzer to use.
-        Param: string
-        Returns: none
-        """
-        self.exoplanetDictionary = take_exoplanet_data(file)
+    
     
     def get_planet_info(self, planetName):
         """
@@ -98,5 +94,3 @@ class exoplanetAnalyzer:
         """
         formatedExoplanetInfo = self.get_formatted_planet_info(planetName)
         print(formatedExoplanetInfo)
-
-        

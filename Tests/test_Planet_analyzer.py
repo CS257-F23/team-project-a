@@ -1,4 +1,11 @@
 import unittest
+import sys
+import os
+
+# Add your project directory to the Python path
+project_directory = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, project_directory)
+
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
 from ProductionCode.load_data import take_exoplanet_data
 

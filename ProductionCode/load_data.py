@@ -1,4 +1,6 @@
 import csv
+from ProductionCode.exoplanets import exoplanet_data
+
 
 def take_exoplanet_data(exoplanetData) :
     """
@@ -8,20 +10,18 @@ def take_exoplanet_data(exoplanetData) :
     Param: string
     Returns: dictionary
     """
-    #Make an empty dictionary
-    exoplanetsByName = {}
-
+    
     with open(exoplanetData, 'r') as csvfile:
         datareader = csv.DictReader(csvfile)
         for row in datareader:
-            exoplanetsByName = add_row_of_data_to_dictionary(row, exoplanetsByName)
+            exoplanetsByName = make_row_of_data_to_dictionary(row, exoplanetsByName)
+            exoplanet_data.append(exoplanetsByName)
+        return exoplanet_data
 
-        return exoplanetsByName
-
-def add_row_of_data_to_dictionary(row, exoplanetsByName):
+def make_row_of_data_to_dictionary(row, exoplanetsByName):
     """
     Helper function for take_exoplanet_data. 
-    Adds one planet's worth of info into a growing dictionary of info by planet.
+    Makes one planet's worth of info into a growing dictionary of info by planet.
     Param: dictionary, dictionary 
     Returns: dictionary
     """

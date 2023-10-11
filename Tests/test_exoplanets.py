@@ -1,8 +1,8 @@
 import subprocess
 import unittest
-from ProductionCode.load_data import take_exoplanet_data
-from ProductionCode.exoplanets import *
 
+from ProductionCode.load_data import take_exoplanet_data
+from ProductionCode.exoplanets import run_planet_info, run_goldilocks_planet, run_habitable_planets
 
 class TestPlanetMethods(unittest.TestCase):
 
@@ -11,16 +11,15 @@ class TestPlanetMethods(unittest.TestCase):
 
     def test_run_planet_info_valid(self):
         code = subprocess.Popen(['python3', '-u', "ProductionCode/exoplanets.py", '--planet_info', '11 Com b'],
-                                stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                                encoding='utf8')
-        output, err = code.communicate() 
+                                stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding='utf8')
+        output, err = code.communicate()
         self.assertIn('11 Com b', output.strip())
 
     def test_run_planet_info_invalid(self):
         planet_name = "FAKEPLANET"
         result = run_planet_info(planet_name)
-        expected_error_message = f"No data available for desried planet"
-        self.assert(result, expected_error_message)
+        expected_error_message = "No data available for desired planet"
+        self.assertEqual(result, expected_error_message)
 
     def test_run_planet_info_string(self):
         #test function's capactiy to handle random strings
@@ -78,8 +77,9 @@ class TestPlanetMethods(unittest.TestCase):
 
     def test_extract_info_and_goldilocks_intergration(self):
         planet_name = "Kepler-186 f"
-        info_result = self.chi.run_planet_info(planet_name)
+        info_result = run_planet_info(planet_name)
         self.assertIn(planet_name, info_result)
         goldilocks_status = run_goldilocks_planet(planet_name)
         self.assertEqual(goldilocks_status, "Planet is inside the goldilocks zone")
+
         

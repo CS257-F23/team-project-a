@@ -2,10 +2,9 @@ import argparse
 from ProductionCode.Goldilocks import Goldilocks_Determiner
 from ProductionCode.HabitablePlanets import Habitable_Finder
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
-from ProductionCode.load_data import take_exoplanet_data
 # -*- coding: utf-8 -*-
 
-exoplanet_data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
+exoplanet_data = {}
 
 def parse_command_line():
     """
