@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+import sys
+sys.path.append("ProductionCode/")
 from ProductionCode.Goldilocks import Goldilocks_Determiner
 from ProductionCode.exoplanets import take_exoplanet_data
 from ProductionCode.PlanetAnalyzer import *
