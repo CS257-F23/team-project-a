@@ -76,7 +76,7 @@ class TestFormatPlanetInfo(unittest.TestCase):
         self.assertRaises(TypeError, self.analyzer.format_planet_info, 972)
 
     def test_format_info_whitespaces(self):
-        self.assertRaises(IndexError, self.analyzer.format_planet_info, "      ")
+        self.assertRaises(TypeError, self.analyzer.format_planet_info, "      ")
 
 class TestGetFormattedInfo(unittest.TestCase):
 
