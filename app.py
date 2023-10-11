@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from ProductionCode.Goldilocks import Goldilocks_Determiner
-from ProductionCode.load_data import take_exoplanet_data
+from ProductionCode.exoplanets import take_exoplanet_data
 from ProductionCode.PlanetAnalyzer import *
 
 

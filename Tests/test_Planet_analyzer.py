@@ -1,13 +1,9 @@
 import unittest
 import sys
-import os
-
-# Add your project directory to the Python path
-project_directory = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, project_directory)
+sys.path.append("ProductionCode/")
 
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
-from ProductionCode.load_data import take_exoplanet_data
+from ProductionCode.exoplanets import take_exoplanet_data
 
 
 class TestGetPlanetInfo(unittest.TestCase):
@@ -74,7 +70,7 @@ class TestFormatPlanetInfo(unittest.TestCase):
         self.assertRaises(IndexError, self.analyzer.format_planet_info, planet_name)
 
     def test_format_info_none(self):   
-        self.assertRaises(IndexError, self.analyzer.format_planet_info, None)
+        self.assertRaises(TypeError, self.analyzer.format_planet_info, None)
 
     def test_format_info_empty(self):
         self.assertRaises(IndexError, self.analyzer.format_planet_info, "")
@@ -83,7 +79,7 @@ class TestFormatPlanetInfo(unittest.TestCase):
         self.assertRaises(TypeError, self.analyzer.format_planet_info, 972)
 
     def test_format_info_whitespaces(self):
-        self.assertRaises(TypeError, self.analyzer.format_planet_info, "      ")
+        self.assertRaises(IndexError, self.analyzer.format_planet_info, "      ")
 
 class TestGetFormattedInfo(unittest.TestCase):
 

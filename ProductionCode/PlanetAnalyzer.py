@@ -1,5 +1,3 @@
-from ProductionCode.load_data import take_exoplanet_data
-
 class exoplanetAnalyzer:
     def __init__(self, dictionary=None):
         """

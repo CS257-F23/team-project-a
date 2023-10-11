@@ -93,3 +93,27 @@ class Goldilocks_Determiner:
             print(planet_name, 'is in the goldilocks zone! (by Solar Equivalent AU)')
         else:
             print(planet_name, 'is not in the goldilocks zone (by Solar Equivalent AU).')
+
+    def create_habitable_list(self):
+        """
+        Creates a list of habitable planets using is_in_goldilocks_zone and iterating through the dictionary
+        Param: none
+        Returns: list
+        """
+        habitable_planets = []
+        for planet in self.exoplanetDictionary:
+            if self.is_in_goldilocks_zone(planet):
+                habitable_planets.append(planet)
+
+        return habitable_planets
+    
+    def print_habitable_list(self):
+        """
+        Prints the list of habitable planets
+        Param: none
+        Returns: none
+        """
+        list = self.create_habitable_list()
+        print("The habitable planets (by Solar Equivalent AU) found in this database are")
+        for planet in list:
+            print(planet)

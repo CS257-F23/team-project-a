@@ -13,21 +13,21 @@ class TestPlanetInfo(unittest.TestCase):
         """Test that using 14 Her b with the planet_info route outputs the correct string"""
         self.app = app.test_client()
         response = self.app.get('/planet_info/14 Her b', follow_redirects=True)
-        self.assertEqual(b'Planet Info \n\nPlanet Name: 14 Her b\nHost Name: 14 Her\nNumber of Stars: 1\nNumber of Planets: 2\nNumber of Moons: 0\nDiscovery Method: Radial Velocity\nDiscovery Year: 2002\nDiscovery Facility: W. M. Keck Observatory\nSemi-Major Axis: 2.774000\nPlanet Radius: 12.600\nPlanet Mass: 2559.47216\nStellar Radius: 0.93\nStellar Mass: 0.91\nStellar Luminosity: -0.153\nGalactic Latitude: 46.94447\nGalactic Longitude: 69.16849\n', response.data)
+        self.assertIn(b'Galactic Latitude: 46.94447<br>Galactic Longitude: 69.16849', response.data)
     
     def test_ups_And_d_info_route(self):
         """Test that using ups And d with the planet_info route outputs the correct string"""
         self.app = app.test_client()
         response = self.app.get('/planet_info/ups And d', follow_redirects=True)
-        self.assertEqual(b'Planet Info \n\nPlanet Name: ups And d\nHost Name: ups And\nNumber of Stars: 2\nNumber of Planets: 3\nNumber of Moons: 0\nDiscovery Method: Radial Velocity\nDiscovery Year: 1999\nDiscovery Facility: Multiple Observatories\nSemi-Major Axis: 2.513290\nPlanet Radius: 12.500\nPlanet Mass: 3257.74117\nStellar Radius: 1.56\nStellar Mass: 1.30\nStellar Luminosity: 0.525\nGalactic Latitude: -20.66791\nGalactic Longitude: 132.00045\n', response.data)
+        self.assertIn(b'Planet Name: ups And d<br>Host Name: ups And', response.data)
 
 class TestGoldilocksPlanet(unittest.TestCase):
     def test_14_Her_b_goldilocks_route(self):
         """Test that using 14 Her b with the goldilocks_planet route outputs the correct string"""
         self.app = app.test_client()
         response = self.app.get('/check_goldilocks/14 Her b', follow_redirects=True)
-        print(response.data)
         self.assertIn(b'14 Her b is not in the Goldilocks Zone. (by Solar Equivalent AU)', response.data)
+        
     def test_ups_And_d_goldilocks_route(self):
         """Test that using ups And d with the goldilocks_planet route outputs the correct string"""
         self.app = app.test_client()

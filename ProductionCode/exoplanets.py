@@ -1,10 +1,61 @@
 import argparse
-from ProductionCode.Goldilocks import Goldilocks_Determiner
-from ProductionCode.HabitablePlanets import Habitable_Finder
-from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
+import csv
+from Goldilocks import Goldilocks_Determiner
+from PlanetAnalyzer import exoplanetAnalyzer
 # -*- coding: utf-8 -*-
 
-exoplanet_data = {}
+def take_exoplanet_data(exoplanetData) :
+    """
+    Takes a csv file of exoplanet data and returns a 
+    dictionary of planets keyed to lists containing 
+    all the info about them. 
+    Param: string
+    Returns: dictionary
+    """
+    #Make an empty dictionary
+    exoplanetsByName = {}
+
+    with open(exoplanetData, 'r') as csvfile:
+        datareader = csv.DictReader(csvfile)
+        for row in datareader:
+            exoplanetsByName = add_row_of_data_to_dictionary(row, exoplanetsByName)
+
+        return exoplanetsByName
+
+def add_row_of_data_to_dictionary(row, exoplanetsByName):
+    """
+    Helper function for take_exoplanet_data. 
+    Adds one planet's worth of info into a growing dictionary of info by planet.
+    Param: dictionary, dictionary 
+    Returns: dictionary
+    """
+
+    #Save all the important data from each planet
+    planetName = row['pl_name']
+    hostName = row['hostname']
+    numberOfStars = row['sy_snum']
+    numberOfPlanets = row['sy_pnum']
+    numberOfMoons = row['sy_mnum']
+    discoveryMethod = row['discoverymethod']
+    discoveryYear = row['disc_year']
+    discoveryFacility = row['disc_facility']
+    semiMajorAxis = row ['pl_orbsmax']
+    planetRadius = row['pl_rade']
+    planetMass = row['pl_bmasse']
+    stellarRadius = row ['st_rad']
+    stellarMass = row['st_mass']
+    stellarLuminosity = row ['st_lum']
+    galacticLatitude = row ['glat']
+    galacticLongitude = row ['glon']
+
+    #Make that planet an entry in the dictionary
+    if planetName not in exoplanetsByName :
+        #Put the data in a list 
+        exoplanetsByName[planetName] = [planetName, hostName, numberOfStars, numberOfPlanets,
+                                        numberOfMoons, discoveryMethod, discoveryYear, discoveryFacility, 
+                                        semiMajorAxis, planetRadius, planetMass, stellarRadius, stellarMass, 
+                                        stellarLuminosity, galacticLatitude, galacticLongitude]
+    return exoplanetsByName
 
 def parse_command_line():
     """
@@ -41,26 +92,27 @@ def verify_name_in_database(planet_name):
     else:
         return True
 
+exoplanet_data = take_exoplanet_data("Data/ExoplanetSimplifiedData.csv")
 
-def run_planet_info(args):
+def run_planet_info(planet_name):
     """
-    Takes list of command line args, if the given planet is the dataset, runs print_planet_info on it
-    Param: list
+    Takes name of planet, if the given planet is the dataset, runs print_planet_info on it
+    Param: string
     Returns: none
     """
-    if verify_name_in_database(args.planet_info):
+    if verify_name_in_database(planet_name):
         exo_analyzer = exoplanetAnalyzer(exoplanet_data)
-        exo_analyzer.print_planet_info(args.planet_info)
+        exo_analyzer.print_planet_info(planet_name)
 
-def run_goldilocks_planet(args):
+def run_goldilocks_planet(planet_name):
     """
-    Takes list of command line args, if the given planet is the dataset, runs print_goldilocks_zone on it
-    Param: list
+    Takes name of planet, if the given planet is the dataset, runs print_goldilocks_zone on it
+    Param: string
     Returns: none
     """
-    if verify_name_in_database(args.goldilocks_planet):
+    if verify_name_in_database(planet_name):
         goldilocks_determiner = Goldilocks_Determiner(exoplanet_data)
-        goldilocks_determiner.print_goldilocks_zone(args.goldilocks_planet)
+        goldilocks_determiner.print_goldilocks_zone(planet_name)
 
 def run_habitable_planets():
     """"
@@ -68,19 +120,21 @@ def run_habitable_planets():
     Param: none
     Returns: none
     """
-    habitable_finder = Habitable_Finder(exoplanet_data)
-    habitable_finder.print_habitable_list()
+    goldilocks_determiner = Goldilocks_Determiner(exoplanet_data)
+    goldilocks_determiner.print_habitable_list()
+
 
 def main():
     """Parses command line arguments and runs the correct function based on the given args"""
     args = parse_command_line()
 
     if args.planet_info:
-        run_planet_info(args)
+        run_planet_info(args.planet_info)
     elif args.goldilocks_planet:
-        run_goldilocks_planet(args)
+        run_goldilocks_planet(args.goldilocks_planet)
     elif args.habitable_planets:
         run_habitable_planets()
+
 
 if __name__ == "__main__":
     main()

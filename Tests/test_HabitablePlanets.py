@@ -1,6 +1,6 @@
-import unittest
+#import unittest
 #TESTS NOT COPMPLETE IN THIS FILE
-from ProductionCode.HabitablePlanets import Habitable_Finder
+#from ProductionCode.HabitablePlanets import Habitable_Finder
 
 #test stuff
     #exoplanetDictionary = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
@@ -10,12 +10,8 @@ from ProductionCode.HabitablePlanets import Habitable_Finder
     #exo_analyzer.print_planet_info('WASP-41 c')
     #gold_det.print_goldilocks_zone('14 Her b')
     #hab_finder.print_habitable_list()
-exoplanetDictionary = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
-command_line_interpreter = Command_line_interpreter(exoplanetDictionary)
-command_line_interpreter.run_specified_arg()
+#exoplanetDictionary = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
 
-def test_habitatability_feature(self):
-    habitable_planets
-    
+
 
 
