@@ -62,8 +62,7 @@ def get_cell(planet_name):
     exoplanet_data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
     fixed_planet_name = underscores_to_spaces(planet_name)
     exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data)
-    list_info = exoplanet_analyzer.get_planet_info(fixed_planet_name)
-    exoplanet_info = exoplanet_analyzer.format_info_for_html(list_info)
+    exoplanet_info = exoplanet_analyzer.get_html_formatted_planet_info(fixed_planet_name)
     return exoplanet_info
 
 #Route for errors
