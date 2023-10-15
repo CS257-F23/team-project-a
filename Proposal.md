@@ -13,13 +13,14 @@ Date Downloaded: 9/24/2023
 
 Authorship: IPAC, Division of Physics, Mathematics, and Astronomy at Caltech.
 
-Time period, geography, and scope covered: 
+Time period, geography, and scope covered: Measurements and disoveries made in space until 9/24/2023, includes all exoplanets which meet the parameters for "confirmed exoplanets" [(see more)](https://exoplanetarchive.ipac.caltech.edu/docs/exoplanet_criteria.html).
 
 Location of the dataset overview information: [https://exoplanetarchive.ipac.caltech.edu/docs/pscp_about.html](https://exoplanetarchive.ipac.caltech.edu/docs/pscp_about.html)
 
 Location of technical documentation: [https://exoplanetarchive.ipac.caltech.edu/applications/DocSet/index.html?doctree=/docs/docmenu.xml&startdoc=item_1_01](https://exoplanetarchive.ipac.caltech.edu/applications/DocSet/index.html?doctree=/docs/docmenu.xml&startdoc=item_1_01)
 
 Data formats: Excel sheet, .csv 
+
 Terms of Use: [https://exoplanetarchive.ipac.caltech.edu/docs/privacy.html](https://exoplanetarchive.ipac.caltech.edu/docs/privacy.html)
 
 Suggested Citation: 
