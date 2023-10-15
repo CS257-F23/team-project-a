@@ -15,7 +15,7 @@ Authorship: IPAC, Division of Physics, Mathematics, and Astronomy at Caltech.
 
 Time period, geography, and scope covered: 
 
-Location of the dataset overview information: [https://exoplanetarchive.ipac.caltech.edu/docs/data.html](https://exoplanetarchive.ipac.caltech.edu/docs/data.html)
+Location of the dataset overview information: [https://exoplanetarchive.ipac.caltech.edu/docs/pscp_about.html](https://exoplanetarchive.ipac.caltech.edu/docs/pscp_about.html)
 
 Location of technical documentation: [https://exoplanetarchive.ipac.caltech.edu/applications/DocSet/index.html?doctree=/docs/docmenu.xml&startdoc=item_1_01](https://exoplanetarchive.ipac.caltech.edu/applications/DocSet/index.html?doctree=/docs/docmenu.xml&startdoc=item_1_01)
 
