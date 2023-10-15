@@ -6,18 +6,21 @@ We will be using The NASA Exoplanet Archive.
 
 **Metadata:**
 
-[URL:](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PSCompPars)
+URL: [https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PSCompPars](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PSCompPars)
+
 
 Date Downloaded: 9/24/2023
 
 Authorship: IPAC, Division of Physics, Mathematics, and Astronomy at Caltech.
 
 Time period, geography, and scope covered: 
-[Location of the dataset overview information:](https://exoplanetarchive.ipac.caltech.edu/docs/data.html)
-[Location of technical documentation:](https://exoplanetarchive.ipac.caltech.edu/applications/DocSet/index.html?doctree=/docs/docmenu.xml&startdoc=item_1_01)
+
+Location of the dataset overview information: [https://exoplanetarchive.ipac.caltech.edu/docs/data.html](https://exoplanetarchive.ipac.caltech.edu/docs/data.html)
+
+Location of technical documentation: [https://exoplanetarchive.ipac.caltech.edu/applications/DocSet/index.html?doctree=/docs/docmenu.xml&startdoc=item_1_01](https://exoplanetarchive.ipac.caltech.edu/applications/DocSet/index.html?doctree=/docs/docmenu.xml&startdoc=item_1_01)
 
 Data formats: Excel sheet, .csv 
-[Terms of Use:](https://exoplanetarchive.ipac.caltech.edu/docs/privacy.html)
+Terms of Use: [https://exoplanetarchive.ipac.caltech.edu/docs/privacy.html](https://exoplanetarchive.ipac.caltech.edu/docs/privacy.html)
 
 Suggested Citation: 
 This research has made use of the NASA Exoplanet Archive, which is operated by the California Institute of Technology, under contract with the National Aeronautics and Space Administration under the Exoplanet Exploration Program.
