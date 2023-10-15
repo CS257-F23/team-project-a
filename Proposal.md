@@ -1,4 +1,4 @@
-# **American Space Agency Planetary System Information Registry (ASAPSIR)**
+# **The Exoplanet Project**
 
 We will be using The NASA Exoplanet Archive.
 
