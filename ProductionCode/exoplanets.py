@@ -136,6 +136,8 @@ def main():
         run_goldilocks_planet(args.goldilocks_planet)
     elif args.habitable_planets:
         run_habitable_planets()
+    else:
+        print("usage: exoplanets.py [-h] [--planet_info Planet Name] [--goldilocks_planet Planet Name] [--habitable_planets]")
 
 
 if __name__ == "__main__":
