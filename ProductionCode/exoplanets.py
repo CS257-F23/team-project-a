@@ -102,7 +102,7 @@ def run_planet_info(planet_name):
     """
     if verify_name_in_database(planet_name):
         exo_analyzer = exoplanetAnalyzer(exoplanet_data)
-        exo_analyzer.print_planet_info(planet_name)
+        print(exo_analyzer.get_formatted_planet_info(planet_name))
 
 def run_goldilocks_planet(planet_name):
     """
@@ -112,7 +112,7 @@ def run_goldilocks_planet(planet_name):
     """
     if verify_name_in_database(planet_name):
         goldilocks_determiner = Goldilocks_Determiner(exoplanet_data)
-        goldilocks_determiner.print_goldilocks_zone(planet_name)
+        print(goldilocks_determiner.get_goldilocks_zone(planet_name))
 
 def run_habitable_planets():
     """"

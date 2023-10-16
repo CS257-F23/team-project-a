@@ -7,6 +7,7 @@ from ProductionCode.PlanetAnalyzer import *
 
 
 app = Flask(__name__)
+exoplanet_data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
 
 def underscores_to_spaces(underscored_string):
     """ 
@@ -38,7 +39,6 @@ def check_goldilocks(planet_name):
     Param: string
     Returns: string
     """
-    exoplanet_data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
     fixed_planet_name = underscores_to_spaces(planet_name)
     goldilocks_analyzer = Goldilocks_Determiner(exoplanet_data)
     result = goldilocks_analyzer.is_in_goldilocks_zone(fixed_planet_name)
@@ -53,13 +53,12 @@ def check_goldilocks(planet_name):
 
 #Route with one parameter that shows planet info
 @app.route('/planet_info''/<planet_name>', strict_slashes=False)
-def get_cell(planet_name):
+def get_planet_info(planet_name):
     """ 
     Takes a planet name and creates a web page with that planet's info
     Param: string
     Returns: string
     """
-    exoplanet_data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
     fixed_planet_name = underscores_to_spaces(planet_name)
     exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data)
     exoplanet_info = exoplanet_analyzer.get_html_formatted_planet_info(fixed_planet_name)

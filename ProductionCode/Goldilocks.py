@@ -83,16 +83,16 @@ class Goldilocks_Determiner:
         else:
             return False
         
-    def print_goldilocks_zone(self, planet_name):
+    def get_goldilocks_zone(self, planet_name):
         """
-        Takes planet name and prints a nice message about if it is in the goldilocks zone
+        Takes planet name and returns a nice message about if it is in the goldilocks zone
         Param: string
-        Returns: none
+        Returns: string
         """
         if self.is_in_goldilocks_zone(planet_name):
-            print(planet_name, 'is in the goldilocks zone! (by Solar Equivalent AU)')
+            return(planet_name, 'is in the goldilocks zone! (by Solar Equivalent AU)')
         else:
-            print(planet_name, 'is not in the goldilocks zone (by Solar Equivalent AU).')
+            return(planet_name, 'is not in the goldilocks zone (by Solar Equivalent AU).')
 
     def create_habitable_list(self):
         """

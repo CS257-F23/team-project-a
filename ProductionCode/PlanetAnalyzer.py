@@ -94,11 +94,3 @@ class exoplanetAnalyzer:
         formatedExoplanetInfo = self.format_planet_info(exoplanetInfo)
         return(formatedExoplanetInfo)
     
-    def print_planet_info(self, planetName):
-        """ 
-        Takes planet name and prints all the info about it. 
-        Param: string
-        Returns: none
-        """
-        formatedExoplanetInfo = self.get_formatted_planet_info(planetName)
-        print(formatedExoplanetInfo)
