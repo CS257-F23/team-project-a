@@ -66,7 +66,7 @@ class exoplanetAnalyzer:
                     "Stellar Radius: ", "Stellar Mass: ", "Stellar Luminosity: ", 
                     "Galactic Latitude: ", "Galactic Longitude: "]
         
-        formatedInfoString = "Planet Info \n\n"
+        formatedInfoString = "Planet Info <br><br>"
         s = 0
         #Creates a big string, one label and variable a line
         while (s <= 15):
