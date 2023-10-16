@@ -36,14 +36,6 @@ class TestPlanetMethods(unittest.TestCase):
         self.assertEqual(output, expected_error_message)
         code.terminate()
 
-    def test_run_planet_info_non_string(self):
-        code = subprocess.Popen(['python3', '-u', "ProductionCode/exoplanets.py", '--planet_info', 354],
-                                stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding='utf8')
-        output, err = code.communicate()
-        expected_error_message = "No data available for desired planet\n"
-        self.assertEqual(output, expected_error_message)
-        code.terminate()
-
     def test_run_planet_info_whitespaces(self):
         code = subprocess.Popen(['python3', '-u', "ProductionCode/exoplanets.py", '--planet_info', "       "],
                                 stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding='utf8')

@@ -96,7 +96,7 @@ exoplanet_data = take_exoplanet_data("Data/ExoplanetSimplifiedData.csv")
 
 def run_planet_info(planet_name):
     """
-    Takes name of planet, if the given planet is the dataset, runs print_planet_info on it
+    Takes name of planet, if the given planet is the dataset, prints get_planet_info
     Param: string
     Returns: none
     """
@@ -106,13 +106,15 @@ def run_planet_info(planet_name):
 
 def run_goldilocks_planet(planet_name):
     """
-    Takes name of planet, if the given planet is the dataset, runs print_goldilocks_zone on it
+    Takes name of planet, if the given planet is the dataset, prints get_goldilocks_zone
     Param: string
     Returns: none
     """
     if verify_name_in_database(planet_name):
         goldilocks_determiner = Goldilocks_Determiner(exoplanet_data)
-        print(goldilocks_determiner.get_goldilocks_zone(planet_name))
+        result = goldilocks_determiner.get_goldilocks_zone(planet_name)
+        formatted = result[0]+ " " + result[1]
+        print(formatted)
 
 def run_habitable_planets():
     """"

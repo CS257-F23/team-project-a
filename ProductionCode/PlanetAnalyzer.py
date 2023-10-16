@@ -19,8 +19,6 @@ class exoplanetAnalyzer:
         Returns: none 
         """
         self.exoplanetDictionary = dictionary
-
-    
     
     def get_planet_info(self, planetName):
         """
