@@ -1,0 +1,1 @@
+#should test verify name in database, and maybe just check that a couple planets end up in the database it creates?

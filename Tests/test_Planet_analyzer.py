@@ -9,7 +9,7 @@ class TestGetPlanetInfo(unittest.TestCase):
 
     def setUp(self):
         self.data = data_loader('Data/ExoplanetSimplifiedData.csv')
-        self.analyzer = exoplanetAnalyzer(self.data)
+        self.analyzer = exoplanetAnalyzer(self.data.exoplanetsByName)
 
     def test_get_info_valid(self):
         planet_name = "11 Com b"
@@ -46,8 +46,8 @@ class TestGetPlanetInfo(unittest.TestCase):
 class TestGetFormattedPlanetInfo(unittest.TestCase):
 
     def setUp(self):
-        self.data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
-        self.analyzer = exoplanetAnalyzer(self.data)
+        self.data = data_loader('Data/ExoplanetSimplifiedData.csv')
+        self.analyzer = exoplanetAnalyzer(self.data.exoplanetsByName)
 
     def test_get_format_info_valid(self):
         planet_name = "14 Her b"
@@ -76,10 +76,10 @@ class TestGetFormattedPlanetInfo(unittest.TestCase):
         self.assertRaises(KeyError, self.analyzer.get_formatted_planet_info, "      ")
 
 class TestGetFormattedInfo(unittest.TestCase):
-
+    
     def setUp(self):
-        self.data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
-        self.analyzer = exoplanetAnalyzer(self.data)
+        self.data = data_loader('Data/ExoplanetSimplifiedData.csv')
+        self.analyzer = exoplanetAnalyzer(self.data.exoplanetsByName)
 
     def test_get_formatted_info_valid(self):
         planet_name = "11 Com b"
