@@ -1,14 +1,14 @@
 import unittest
 
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
-from ProductionCode.exoplanets import take_exoplanet_data
+from ProductionCode.Exoplanet_Data_Loader import data_loader
 
 #TODO: DOCSTRINGS!!, set up test methods for the html version
 
 class TestGetPlanetInfo(unittest.TestCase):
 
     def setUp(self):
-        self.data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
+        self.data = data_loader('Data/ExoplanetSimplifiedData.csv')
         self.analyzer = exoplanetAnalyzer(self.data)
 
     def test_get_info_valid(self):

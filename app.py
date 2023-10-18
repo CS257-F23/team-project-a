@@ -1,11 +1,11 @@
 from flask import Flask, render_template
 from ProductionCode.Goldilocks import Goldilocks_Determiner
-from ProductionCode.exoplanets import take_exoplanet_data
+from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.PlanetAnalyzer import *
 
 
 app = Flask(__name__)
-exoplanet_data = take_exoplanet_data('Data/ExoplanetSimplifiedData.csv')
+exoplanet_data = data_loader('Data/ExoplanetSimplifiedData.csv')
 
 def underscores_to_spaces(underscored_string):
     """ 
@@ -38,7 +38,7 @@ def check_goldilocks(planet_name):
     Returns: string
     """
     fixed_planet_name = underscores_to_spaces(planet_name)
-    goldilocks_analyzer = Goldilocks_Determiner(exoplanet_data)
+    goldilocks_analyzer = Goldilocks_Determiner(exoplanet_data.exoplanetsByName)
     result = goldilocks_analyzer.is_in_goldilocks_zone(fixed_planet_name)
 
     #Change the html input based on if the planet is in the Goldilocks Zone
@@ -58,7 +58,7 @@ def get_planet_info(planet_name):
     Returns: string
     """
     fixed_planet_name = underscores_to_spaces(planet_name)
-    exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data)
+    exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName)
     exoplanet_info = exoplanet_analyzer.get_html_formatted_planet_info(fixed_planet_name)
     return exoplanet_info
 

@@ -1,11 +1,10 @@
 import argparse
 from ProductionCode.Goldilocks import Goldilocks_Determiner
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
-from ProductionCode.exoplanets import *
+from ProductionCode.Exoplanet_Data_Loader import data_loader
 # -*- coding: utf-8 -*-*
 
-
-exoplanet_data = take_exoplanet_data("Data/ExoplanetSimplifiedData.csv")
+exoplanet_data = data_loader("Data/ExoplanetSimplifiedData.csv")
 
 def parse_command_line():
     """
@@ -36,8 +35,8 @@ def run_planet_info(planet_name):
     Param: string
     Returns: none
     """
-    if verify_name_in_database(planet_name, exoplanet_data):
-        exo_analyzer = exoplanetAnalyzer(exoplanet_data)
+    if exoplanet_data.verify_name_in_database(planet_name):
+        exo_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName)
         print(exo_analyzer.get_formatted_planet_info(planet_name))
     else:
         print("No data available for desired planet")
@@ -48,8 +47,8 @@ def run_goldilocks_planet(planet_name):
     Param: string
     Returns: none
     """
-    if verify_name_in_database(planet_name, exoplanet_data):
-        goldilocks_determiner = Goldilocks_Determiner(exoplanet_data)
+    if exoplanet_data.verify_name_in_database(planet_name):
+        goldilocks_determiner = Goldilocks_Determiner(exoplanet_data.exoplanetsByName)
         result = goldilocks_determiner.get_goldilocks_zone(planet_name)
         formatted = result[0]+ " " + result[1]
         print(formatted)
@@ -62,7 +61,7 @@ def run_habitable_planets():
     Param: none
     Returns: none
     """
-    goldilocks_determiner = Goldilocks_Determiner(exoplanet_data)
+    goldilocks_determiner = Goldilocks_Determiner(exoplanet_data.exoplanetsByName)
     goldilocks_determiner.print_habitable_list()
 
 
