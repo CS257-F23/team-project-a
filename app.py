@@ -45,6 +45,9 @@ def check_goldilocks(planet_name):
     if result == True:
         return render_template ('goldilocks_result.html', planet_name = planet_name,  
                                 result = "is in the Goldilocks Zone! (by Solar Equivalent AU)")
+    elif result == None:
+        return render_template ('goldilocks_result.html', planet_name = planet_name,  
+                                result = "could be in the Goldilocks Zone, but unfortunately our database does not contain enough information to tell.")
     else:
         return render_template ('goldilocks_result.html', planet_name = planet_name, 
                                 result = "is not in the Goldilocks Zone. (by Solar Equivalent AU)")

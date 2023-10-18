@@ -50,8 +50,7 @@ def run_goldilocks_planet(planet_name):
     if exoplanet_data.verify_name_in_database(planet_name):
         goldilocks_determiner = Goldilocks_Determiner(exoplanet_data.exoplanetsByName)
         result = goldilocks_determiner.get_goldilocks_zone(planet_name)
-        formatted = result[0]+ " " + result[1]
-        print(formatted)
+        print(result)
     else:
         print("No data available for desired planet")
 

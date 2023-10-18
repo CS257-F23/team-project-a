@@ -80,6 +80,8 @@ class Goldilocks_Determiner:
 
         if inner < planet_stellar_dist < outer:
             return True
+        elif inner == 0 or outer == 0 or planet_stellar_dist == -1:
+            return None
         else:
             return False
         
@@ -90,9 +92,12 @@ class Goldilocks_Determiner:
         Returns: string
         """
         if self.is_in_goldilocks_zone(planet_name):
-            return(planet_name, 'is in the goldilocks zone! (by Solar Equivalent AU)')
+            return(planet_name + ' is in the goldilocks zone! (by Solar Equivalent AU)')
+        elif self.is_in_goldilocks_zone(planet_name) == None:
+            string_to_return = str('Unfortunately, the database does not contain sufficient information to determine if ' + planet_name + ' is in the goldilocks zone (by Solar Equivalent AU).')
+            return(string_to_return)
         else:
-            return(planet_name, 'is not in the goldilocks zone (by Solar Equivalent AU).')
+            return(planet_name + ' is not in the goldilocks zone (by Solar Equivalent AU).')
 
     def create_habitable_list(self):
         """
