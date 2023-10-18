@@ -1,6 +1,4 @@
 import unittest
-import sys
-sys.path.append("ProductionCode/")
 
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
 from ProductionCode.exoplanets import take_exoplanet_data

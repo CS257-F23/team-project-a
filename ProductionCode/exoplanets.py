@@ -1,8 +1,4 @@
-import argparse
 import csv
-from Goldilocks import Goldilocks_Determiner
-from PlanetAnalyzer import exoplanetAnalyzer
-# -*- coding: utf-8 -*-
 
 def take_exoplanet_data(exoplanetData) :
     """
@@ -57,88 +53,16 @@ def add_row_of_data_to_dictionary(row, exoplanetsByName):
                                         stellarLuminosity, galacticLatitude, galacticLongitude]
     return exoplanetsByName
 
-def parse_command_line():
-    """
-    Parses command line and returns list of parsed args
-    Param: none
-    Returns: list
-    """
-    parser = argparse.ArgumentParser(description='Exoplanet Data Analyzer')
 
-    #look up info about an exoplanet by its name
-    parser.add_argument('--planet_info', metavar='Planet Name', type=str,
-                        help='Look up info about an exoplanet by its name')
-
-    # look up whether that planet is a goldilocks "planet" (in its star's habitable zone) or not
-    parser.add_argument('--goldilocks_planet', metavar='Planet Name', type=str,
-                    help='Look up whether that planet is a goldilocks planet (in its star\'s habitable zone) or not')
-
-    #get a list of planets in the habitable zone
-    parser.add_argument('--habitable_planets', action='store_true',
-                        help='Get a list of planets in the habitable zone')
-
-    return parser.parse_args()
-
-def verify_name_in_database(planet_name):
+def verify_name_in_database(planet_name, database):
     """
     Checks if string planet name given is in the dataset: 
     if not, print error message and return false, otherwise return true
     Param: string
     Returns: boolean
     """
-    if planet_name not in exoplanet_data.keys():
-        print("No data available for desired planet")
+    if planet_name not in database.keys():
         return False
     else:
         return True
 
-exoplanet_data = take_exoplanet_data("Data/ExoplanetSimplifiedData.csv")
-
-def run_planet_info(planet_name):
-    """
-    Takes name of planet, if the given planet is the dataset, prints get_planet_info
-    Param: string
-    Returns: none
-    """
-    if verify_name_in_database(planet_name):
-        exo_analyzer = exoplanetAnalyzer(exoplanet_data)
-        print(exo_analyzer.get_formatted_planet_info(planet_name))
-
-def run_goldilocks_planet(planet_name):
-    """
-    Takes name of planet, if the given planet is the dataset, prints get_goldilocks_zone
-    Param: string
-    Returns: none
-    """
-    if verify_name_in_database(planet_name):
-        goldilocks_determiner = Goldilocks_Determiner(exoplanet_data)
-        result = goldilocks_determiner.get_goldilocks_zone(planet_name)
-        formatted = result[0]+ " " + result[1]
-        print(formatted)
-
-def run_habitable_planets():
-    """"
-    Runs print_habitable_list
-    Param: none
-    Returns: none
-    """
-    goldilocks_determiner = Goldilocks_Determiner(exoplanet_data)
-    goldilocks_determiner.print_habitable_list()
-
-
-def main():
-    """Parses command line arguments and runs the correct function based on the given args"""
-    args = parse_command_line()
-
-    if args.planet_info:
-        run_planet_info(args.planet_info)
-    elif args.goldilocks_planet:
-        run_goldilocks_planet(args.goldilocks_planet)
-    elif args.habitable_planets:
-        run_habitable_planets()
-    else:
-        print("usage: exoplanets.py [-h] [--planet_info Planet Name] [--goldilocks_planet Planet Name] [--habitable_planets]")
-
-
-if __name__ == "__main__":
-    main()

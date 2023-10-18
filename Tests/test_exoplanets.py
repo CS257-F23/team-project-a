@@ -1,8 +1,5 @@
 import subprocess
 import unittest
-import sys
-
-sys.path.append("ProductionCode/")
 
 
 from ProductionCode.exoplanets import *
