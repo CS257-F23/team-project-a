@@ -50,12 +50,12 @@ class exoplanetAnalyzer:
             s += 1 
         return formatedInfoString
     
-    def format_info_for_html(self, exoplanetInfo):
+    def format_info_for_list(self, exoplanetInfo):
         """
         Takes a list of planet info and returns a 
         more readable string of data with appropriate labels for HTML.
         Param: list
-        Returns: string
+        Returns: list
         """
         #The data in all the lists are already ordered as follows:
         infoList = ["Planet Name: ", "Host Name: ", "Number of Stars: ", "Number of Planets: ",
@@ -64,22 +64,21 @@ class exoplanetAnalyzer:
                     "Stellar Radius: ", "Stellar Mass: ", "Stellar Luminosity: ", 
                     "Galactic Latitude: ", "Galactic Longitude: "]
         
-        formatedInfoString = "Planet Info <br><br>"
+        formatedInfoList = ["Planet Info"]
         s = 0
-        #Creates a big string, one label and variable a line
         while (s <= 15):
-            formatedInfoString = formatedInfoString + infoList[s] + exoplanetInfo[s] + "<br>"
+            formatedInfoList.append(str(infoList[s] + exoplanetInfo[s]))
             s += 1 
-        return formatedInfoString
+        return formatedInfoList
 
-    def get_html_formatted_planet_info(self, planet_name):
+    def get_formatted_planet_info_list(self, planet_name):
         """
-        Takes planet name and returns a string of info about that planet, formatted for printing.
+        Takes planet name and returns a list of info about that planet.
         Param: string
-        Returns: string
+        Returns: list
         """
         exoplanetInfo = self.get_planet_info(planet_name)
-        formatedExoplanetInfo = self.format_info_for_html(exoplanetInfo)
+        formatedExoplanetInfo = self.format_info_for_list(exoplanetInfo)
         return(formatedExoplanetInfo)
 
     def get_formatted_planet_info(self, planetName):

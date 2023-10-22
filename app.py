@@ -15,6 +15,7 @@ from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
 exoplanet_data = data_loader("Data/ExoplanetSimplifiedData.csv")
 exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName)
+planet_list = exoplanet_data.exoplanetsByName.keys()
 from flask import Flask, request, render_template
 
 app = Flask(__name__)
@@ -33,6 +34,7 @@ def underscores_to_spaces(underscored_string):
             better_string = better_string + character
     return better_string
 
+    
 #Default route
 @app.route('/')
 def homepage():
@@ -42,7 +44,7 @@ def homepage():
     """
     #Gives info for how to navigate the app
     #Info written in the form of a html template  
-    return render_template('homepage.html')
+    return render_template('homepage.html', planet_list= planet_list)
 
 #Default route
 @app.route('/about')
@@ -53,7 +55,7 @@ def about():
     """
     #Gives info for how to navigate the app
     #Info written in the form of a html template  
-    return render_template('about.html')
+    return render_template('about.html', planet_list= planet_list)
 
 @app.route('/random_planet')
 def random_planet():
@@ -65,20 +67,20 @@ def random_planet():
     """
     #Gives info for how to navigate the app
     #Info written in the form of a html template  
-    return render_template('random_planet.html')
+    return render_template('random_planet.html', planet_list= planet_list)
 
 #Route with one parameter that shows planet info
 @app.route('/planet_info''/<planet_name>', strict_slashes=False)
-def get_cell(planet_name):
+def get_planet_info(planet_name):
     """ 
     url route: Takes a planet name and creates a web page with that planet's info
     Param: string
     Returns: string
     """
     fixed_planet_name = underscores_to_spaces(planet_name)
-    exoplanet_info = exoplanet_analyzer.get_html_formatted_planet_info(fixed_planet_name)
+    exoplanet_info = exoplanet_analyzer.get_formatted_planet_info_list(fixed_planet_name)
     return render_template ('planet_info.html', planet_name = fixed_planet_name, 
-                            planet_info = exoplanet_info)
+                            planet_info = exoplanet_info, planet_list= planet_list)
 
 
 @app.route('/planet_info', methods = ['GET', 'POST'])
@@ -89,11 +91,11 @@ def planet_info():
     Returns: string
     """
     if request.method == 'POST': 
-        planet_name = request.form['Search']
+        planet_name = request.form['planet_name']
         fixed_planet_name = underscores_to_spaces(planet_name)
-        exoplanet_info = exoplanet_analyzer.get_html_formatted_planet_info(fixed_planet_name)
+        exoplanet_info = exoplanet_analyzer.get_formatted_planet_info_list(fixed_planet_name)
         return render_template ('planet_info.html', planet_name = fixed_planet_name, 
-                            planet_info = exoplanet_info)
+                            planet_info = exoplanet_info, planet_list= planet_list)
     else:
         return "Not a valid request protocol"
 

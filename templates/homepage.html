@@ -1,5 +1,10 @@
 <html>
      <head>
+            <!--Autocomplete scripts here and below obtained from https://www.geeksforgeeks.org/autocomplete-input-suggestion-using-python-and-flask/-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"> </script>   
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"> </script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+                rel="stylesheet" type="text/css" />
         <title>{{title}}</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">   
         </script>   
@@ -20,12 +25,25 @@
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/random_planet">Learn</a></li>
+            <li><a href="/all_planets">Available Planets</a></li>
             <li><a href="/random_planet">Random Planet</a></li>
-            <li class="search_bar"> <form action = "planet_info" method="post">
-                <label for="Search">Search Planets: </label>
-                <input type="text" id ="Search" name ="Search">
-                <input type="submit" value = "Go!">
-            </form> 
+            <li class="search_bar"> <form action="planet_info" method="post">
+                <label>Find Planet Info</label>
+                <input type="text" for="Find Planet Info" id="planet_info" name="planet_name" placeholder="Planet Name">
+                    <script> 
+                    $( function() { 
+                        var availableTags = [ 
+                            {% for planet in planet_list %} 
+                                "{{planet}}", 
+                            {% endfor %} 
+                        ];
+                    $( "#planet_info" ).autocomplete({ 
+                      source: availableTags 
+                    }); 
+                    } ); 
+                  </script> 
+                <input type="submit" value="Search"></input>
+                </form>
             </li>
           </ul>
         </nav>
