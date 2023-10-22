@@ -19,6 +19,10 @@ class TestGoldilocks(unittest.TestCase):
         self.assertEqual()
 
     def test_get_stellar_lum_invalid(self):
+        """
+        Test that inputting a planet that doesn't have any data for stellar luminosity
+        into get_stellar_luminosity returns the integer 0
+        """
         #a planet which does not have this data should return 0 
         self.assertEqual()
 
@@ -29,22 +33,42 @@ class TestGoldilocks(unittest.TestCase):
         self.assertEqual()
 
     def test_get_sm_axis_invalid(self):
+        """
+        Test that inputting a planet that doesn't have any data for sm axis
+        into get_sm_axis returns the integer -1
+        """
         #a planet which does not have this data should return -1
         self.assertEqual()
 
     def test_det_gold_inner_valid(self):
+        """
+        Test that inputting a planet that has data for stellar luminosity
+        into determine_goldilocks_inner returns the corretly computed inner bound
+        """
         #example taken from /website/
         self.assertEqual()
 
     def test_det_gold_inner_invalid(self):
+        """
+        Test that inputting a planet that doesn't have any data for stellar luminosity
+        into determine_goldilocks_inner returns the integer 0
+        """
         #a planet which does not have this data should return 0 
         self.assertEqual()
 
     def test_det_gold_outer_valid(self):
+        """
+        Test that inputting a planet that has data for stellar luminosity
+        into determine_goldilocks_outer returns the corretly computed outer bound
+        """
         #example taken from /website/
         self.assertEqual()
 
     def test_det_gold_outer_invalid(self):
+        """
+        Test that inputting a planet that doesn't have any data for stellar luminosity
+        into determine_goldilocks_outer returns the integer 0
+        """
         #a planet which does not have this data should return 0 
         self.assertEqual()
 
