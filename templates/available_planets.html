@@ -49,4 +49,11 @@
                 </li>
               </ul>
             </nav>
+        <div class="habitable_planets">
+            <ul>
+                {%for planet in planet_list%}
+                    <li>{{planet}}</li>
+                {% endfor %}
+            </ul>
+        </div>
     </body>

@@ -82,6 +82,7 @@ body {
     background-color: rgb(201, 210, 250);
 }
 
+
 /* This means "apply this style to h1 and h2 tags" */
 h1, h2, h3 {
     font-family: Verdana, Geneva, sans-serif; 

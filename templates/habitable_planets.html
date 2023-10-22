@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='habitable_planets_style.css') }}">
     </head>
     <body>
-        <h1>Available Planets</h1>
+        <h1>Habitable Planets</h1>
 
         <nav>
             <ul class="navigation">
@@ -47,6 +47,13 @@
                     <input type="submit" value="Search"></input>
                     </form>
                 </li>
-              </ul>
-            </nav>
+            </ul>
+        </nav>
+            <div class="habitable_planets">
+                <ul>
+                    {%for planet in habitable_list%}
+                    <li>{{planet}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
     </body>

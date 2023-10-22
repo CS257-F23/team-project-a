@@ -84,9 +84,8 @@ def habitable_planets():
     Param: none
     Returns: html page
     """
-    #Gives info about the meaning of goldilocks zone
-    #Info written in the form of a html template  
-    return render_template('habitable_planets.html', planet_list= planet_list)
+    habitable_list = goldilocks_det.create_habitable_list()
+    return render_template('habitable_planets.html', planet_list= planet_list, habitable_list= habitable_list)
 
 
 @app.route('/random_planet')
