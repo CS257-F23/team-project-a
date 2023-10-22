@@ -5,6 +5,10 @@ from ProductionCode.Goldilocks import Goldilocks_Determiner
 
 class TestGoldilocks(unittest.TestCase):
     def setUp(self):
+        """
+        Creates a Goldilocks Determiner filled with data on which tests
+        can be run
+        """
         self.data = data_loader('Data/ExoplanetSimplifiedData.csv')
         self.determiner = Goldilocks_Determiner(self.data.exoplanetsByName)
     

@@ -3,7 +3,7 @@ from app import *
 
 class TestHomepage(unittest.TestCase):
     def test_route(self):
-        """Tests that the homepage route gives the correct string"""
+        """Test that the homepage route gives the correct string"""
         self.app = app.test_client()
         response = self.app.get('/', follow_redirects=True)
         self.assertIn(b"Use underscores in place of spaces.", response.data)
