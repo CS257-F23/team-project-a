@@ -18,7 +18,7 @@ class TestDataLoader(unittest.TestCase):
         Test that inputting a planet that's in the data set into
         verity_name_in_database returns the boolean True
         """
-        self.assertEqual(self.data.verify_name_in_database("Her 14 b"), True)
+        self.assertEqual(self.data.verify_name_in_database("14 Her b"), True)
 
     def test_verify_name_in_database_invalid(self):
         """
