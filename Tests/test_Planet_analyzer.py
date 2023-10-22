@@ -3,7 +3,7 @@ import unittest
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
 from ProductionCode.Exoplanet_Data_Loader import data_loader
 
-#TODO: DOCSTRINGS!!, set up test methods for the html version
+#TODO: DOCSTRINGS!!
 
 class TestGetPlanetInfo(unittest.TestCase):
 

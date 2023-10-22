@@ -1,11 +1,23 @@
-from flask import Flask, render_template
-from ProductionCode.Goldilocks import Goldilocks_Determiner
-from ProductionCode.Exoplanet_Data_Loader import data_loader
-from ProductionCode.PlanetAnalyzer import *
+#We used the following websites in mking this:
+#https://ttl255.com/jinja2-tutorial-part-2-loops-and-conditionals/#:~:text=For%20loops%20start%20with%20%7B%25,we%20go%20over%20the%20elements. 
+#https://w3schools.com/cssref/pr_pos_right.php 
+#https://www.w3schools.com/cssref/pr_background-image.php 
+#https://www.w3schools.com/howto/howto_css_two_columns.asp 
+#https://www.w3.org/MarkUp/HTMLPlus/htmlplus_45.html 
+#https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML
+#
+#My photos come from the following websites:
+#https://eos.org/articles/1-3-million-pairs-of-stars-surround-the-sun
+#https://physicsworld.com/a/goldilocks-zone-may-not-be-a-good-metric-for-whether-life-exists-on-exoplanets-say-astrobiologists/ 
+#https://nick-stevens.com/2017/05/27/exoplanet-rings-juno-based-textures/
 
+from ProductionCode.Exoplanet_Data_Loader import data_loader
+from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
+exoplanet_data = data_loader("Data/ExoplanetSimplifiedData.csv")
+exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName)
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
-exoplanet_data = data_loader('Data/ExoplanetSimplifiedData.csv')
 
 def underscores_to_spaces(underscored_string):
     """ 
@@ -24,58 +36,67 @@ def underscores_to_spaces(underscored_string):
 #Default route
 @app.route('/')
 def homepage():
-    """A homepage route for the app. No parameters."""
+    """A homepage route for the app. No parameters.
+    Param: none
+    Returns: html page
+    """
     #Gives info for how to navigate the app
     #Info written in the form of a html template  
     return render_template('homepage.html')
 
-#Route with one parameter that shows planet info
-@app.route('/check_goldilocks''/<planet_name>', strict_slashes=False)
-def check_goldilocks(planet_name):
-    """ 
-    Takes a planet name and creates a web page that shows if that planet is in the Goldilocks Zone
-    Param: string
-    Returns: string
+#Default route
+@app.route('/about')
+def about():
+    """A route for an about page. Not yet implemented. No parameters.
+    Param: none
+    Returns: html page
     """
-    fixed_planet_name = underscores_to_spaces(planet_name)
-    goldilocks_analyzer = Goldilocks_Determiner(exoplanet_data.exoplanetsByName)
-    result = goldilocks_analyzer.is_in_goldilocks_zone(fixed_planet_name)
+    #Gives info for how to navigate the app
+    #Info written in the form of a html template  
+    return render_template('about.html')
 
-    #Change the html input based on if the planet is in the Goldilocks Zone
-    if result == True:
-        return render_template ('goldilocks_result.html', planet_name = planet_name,  
-                                result = "is in the Goldilocks Zone! (by Solar Equivalent AU)")
-    elif result == None:
-        return render_template ('goldilocks_result.html', planet_name = planet_name,  
-                                result = "could be in the Goldilocks Zone, but unfortunately our database does not contain enough information to tell.")
-    else:
-        return render_template ('goldilocks_result.html', planet_name = planet_name, 
-                                result = "is not in the Goldilocks Zone. (by Solar Equivalent AU)")
+@app.route('/random_planet')
+def random_planet():
+    """A rotue that will be deleted later that currently leads to a 
+     "feature not yet implemented" page that indicates the random planet
+      feature is, believe it or not, not yet implemented. No parameters.
+    Param: none
+    Returns: html page
+    """
+    #Gives info for how to navigate the app
+    #Info written in the form of a html template  
+    return render_template('random_planet.html')
 
 #Route with one parameter that shows planet info
 @app.route('/planet_info''/<planet_name>', strict_slashes=False)
-def get_planet_info(planet_name):
+def get_cell(planet_name):
     """ 
-    Takes a planet name and creates a web page with that planet's info
+    url route: Takes a planet name and creates a web page with that planet's info
     Param: string
     Returns: string
     """
     fixed_planet_name = underscores_to_spaces(planet_name)
-    exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName)
     exoplanet_info = exoplanet_analyzer.get_html_formatted_planet_info(fixed_planet_name)
-    return exoplanet_info
+    return render_template ('planet_info.html', planet_name = fixed_planet_name, 
+                            planet_info = exoplanet_info)
 
-#Route for errors
-@app.errorhandler(404)
-def page_not_found(e):
-    """Returns a 404 message"""
-    return render_template ('404.html')
 
-#Route for errors
-@app.errorhandler(500)
-def page_not_found(e):
-    """Returns an error message"""
-    return render_template ('500.html')
+@app.route('/planet_info', methods = ['GET', 'POST'])
+def planet_info():
+    """ 
+    POST route: Takes a planet name and creates a web page with that planet's info
+    Param: string
+    Returns: string
+    """
+    if request.method == 'POST': 
+        planet_name = request.form['Search']
+        fixed_planet_name = underscores_to_spaces(planet_name)
+        exoplanet_info = exoplanet_analyzer.get_html_formatted_planet_info(fixed_planet_name)
+        return render_template ('planet_info.html', planet_name = fixed_planet_name, 
+                            planet_info = exoplanet_info)
+    else:
+        return "Not a valid request protocol"
+
 
 if __name__ == "__main__":
     app.run(debug=True)

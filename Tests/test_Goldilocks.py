@@ -1,7 +1,6 @@
 import unittest
 from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.Goldilocks import Goldilocks_Determiner
- # more import statemets here
 
 class TestGoldilocks(unittest.TestCase):
     def setUp(self):
