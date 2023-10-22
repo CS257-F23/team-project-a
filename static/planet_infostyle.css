@@ -120,8 +120,9 @@ p {
 }
 
 li {
+    list-style-type: none;
     font-family: Verdana, Geneva, sans-serif;
-    line-height: 1.4;
+    line-height: 1.75;
 }
 
 nav li {
