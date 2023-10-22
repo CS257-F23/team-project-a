@@ -68,8 +68,19 @@
             <p>
                 Scientists disagree on the size of the Goldilocks Zone, even 
                 for our own solar system. Thus, many ways of calculating whether a planet
-                is in it have emerged. Our website uses the Solar Equivalent AU equation.
-                That is, ...
+                is in it have emerged. Our website uses the Solar Equivalent AU equation, which works
+                by comparing a given star to our own sun.
+                The equations we used are from 
+                <a href="https://www.bbvaopenmind.com/en/science/physics/planetary-systems-and-the-habitable-zone/">bbvaopenmind.com</a>
+                and 
+                <a href="https://www.planetarybiology.com/calculating_habitable_zone.html">planetarybiology.com</a></li>,
+                and essentially the idea is to assume that since the Earth is in the Sun's goldilocks zone,
+                and we know where the sun's habitable zone begins and ends, we can approximate the habitable zone of
+                any other star using it's absolute stellar luminosity, which is a measurement of how much energy that star gives off
+                per second. If we compare this to the sun's stellar luminosity, we can use our data for how big the sun's goldilocks zone
+                is to scale the goldilocks zone of that star. Then, to determine if a planet is in that sun's goldilocks zone,
+                we just use the semi-major axis, which is a measurement of how close that planet orbits to it's star,
+                and see if it is in the star's goldilocks zone.
             </p>
         </div>
      </body>

@@ -108,6 +108,14 @@ img {
     width: 55%;
 }
 
+div.goldilocks_info {
+    display: block;
+    float: right;
+    background-color: white;
+    border-color: rgb(0, 0, 94);
+    padding: 10px;
+}
+
 /* This means "apply this style to h1 and h2 tags" */
 h1, h2, h3 {
     font-family: Verdana, Geneva, sans-serif; 
