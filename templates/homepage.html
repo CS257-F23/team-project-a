@@ -16,16 +16,18 @@
             rel="stylesheet" type="text/css" />   
 
         
-        <h1>Exoplanets!</h1>
         <link rel="stylesheet" href="{{ url_for('static', filename='homepagestyle.css') }}">
-
+    </head>
+    <body>
+        <h1>Exoplanets!</h1>
 
         <nav>
         <ul class="navigation">
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="/random_planet">Learn</a></li>
-            <li><a href="/all_planets">Available Planets</a></li>
+            <li><a href="/learn">Learn</a></li>
+            <li><a href="/available_planets">Available Planets</a></li>
+            <li><a href="/habitable_planets">Habitable Planets</a></li>
             <li><a href="/random_planet">Random Planet</a></li>
             <li class="search_bar"> <form action="planet_info" method="post">
                 <label>Find Planet Info</label>
@@ -47,17 +49,13 @@
             </li>
           </ul>
         </nav>
-
-     </head>
-     <body>
-        <h2> </h2>
+    <h2> </h2>
         <p>
             Welcome to the Exoplanet Info Getter! Search a planet to learn more about it or 
             click through our other pages to explore the wonderful world (or worlds :) of exoplanets.
-            <b>(Note to grader: the only planet in my hard-coded data is "ups And d")</b>.  
         </p>
 
-        <img src={{ url_for('static', filename='photos/exoplanet_with_rings.jpg') }} alt="Computer rendering of a blue exoplanet with rings" />
+        <img src="../static/photos/exoplanet_with_rings.jpg" alt="Computer rendering of a blue exoplanet with rings" />
 
         <div class="examples">
         <h3>
@@ -94,16 +92,6 @@
                     why scientists have dubbed the range of such distances the "Goldilocks Zone."
                 </p>
                 </div>
-                <div class="examples">
-                    <h3>
-                        Calculating the Goldilocks Zone
-                    </h3>
-                    <p>
-                        Scientists disagree on the size of the Goldilocks Zone, even 
-                        for our own solar system. Thus, many ways of calculating whether a planet
-                        is in it have emerged. Our website uses the Solar Equivalent AU equation.
-                    </p>
-                    </div>
 
      </body>
  </html>

@@ -1,3 +1,4 @@
+
 h1 {
     padding-top: 1em;
     padding-bottom: 1em;
@@ -79,20 +80,6 @@ body {
     margin-left: 5%;
     margin-right: 5%;
     background-color: rgb(201, 210, 250);
-}
-
-img {
-    float: left;
-    width: 35%;
-}
-
-div.examples {
-    background-color: azure;
-    width: 650px;
-    border: 2px solid rgb(0, 0, 94);
-    float: right;
-    padding: 10px;
-    margin: 10px;
 }
 
 /* This means "apply this style to h1 and h2 tags" */

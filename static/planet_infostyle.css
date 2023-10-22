@@ -6,36 +6,6 @@ h1 {
     text-align: center;
 }
 
-nav ul {
-    border: 2px solid rgb(0, 0, 94);
-    list-style-type: none;
-    overflow: hidden;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
-}
-
-/* Navigation bar list items should render starting at the left margin. */
-nav li {
-    float: left;
-}
-
-/* Navigation bar items should link to elements on the page, or to other pages.
-     This is the "a" tag. So this says "apply this style to links within the nav bar".
-*/
-nav li a {
-    display: block;
-    color: rgb(0, 0, 94);
-    text-decoration: none;
-    text-align: center;
-    padding: 14px 16px 17.5px;
-}
-
-/* When you mouse over something in the nav bar, turn it blue. */
-nav li a:hover {
-    color: white;
-    background-color: rgb(0, 0, 94);
-}
 
 nav ul {
     border: 2px solid rgb(0, 0, 94);
@@ -45,6 +15,7 @@ nav ul {
     position: sticky;
     top: 0;
     height: 50px;
+    padding-left: 0px;
 }
 
 /* Navigation bar list items should render starting at the left margin. */
@@ -60,7 +31,7 @@ nav li a {
     color: rgb(0, 0, 94);
     text-decoration: none;
     text-align: center;
-    padding: 14px 16px 17.5px;
+    padding: 14px 13px 23.5px;
 }
 
 /* When you mouse over something in the nav bar, turn it blue. */
@@ -79,17 +50,17 @@ nav li form {
 
 nav li form label {
     color: rgb(0, 0, 94);
-    padding-right: 20px;
+    padding-right: 10px;
     height: 7px;
-    width: 250px;
+    width: 200px;
     display: inline-block;
 }
 
 nav li form input[type=text] {
     padding: 10px;
-    padding-left: 10px;
+    padding-left: 5px;
     padding-right: .5em;
-    width: 60%;
+    width: 150px;
     height: 7px;
     display: inline-block;
     border-style: solid;
@@ -103,8 +74,6 @@ nav li form input[type=submit] {
     background-color: rgb(0, 0, 94);
     border-style: hidden;
 }
-
-
 
 body {
     margin-left: 5%;
@@ -125,12 +94,6 @@ li {
     line-height: 1.75;
 }
 
-nav li {
-    display: flex;
-    float: left;
-    font-size: 1.1em;
-    font-weight: bold;
-}
 
 div.planet_info {
     list-style-type: none;
@@ -145,7 +108,26 @@ img {
     width: 55%;
 }
 
-h2 {
+/* This means "apply this style to h1 and h2 tags" */
+h1, h2, h3 {
+    font-family: Verdana, Geneva, sans-serif; 
     text-align: center;
-}
+ }
+ 
+ p {
+     font-family: Verdana, Geneva, sans-serif;
+     /* This next line gives us some extra spacing within a paragraph*/
+     line-height: 1.4;
+ }
+ 
+ li {
+     font-family: Verdana, Geneva, sans-serif;
+     line-height: 1.4;
+ }
+ 
+ nav li {
+     float: left;
+     font-size: 1.1em;
+     font-weight: bold;
+ }
   

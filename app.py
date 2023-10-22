@@ -13,11 +13,14 @@
 
 from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
-exoplanet_data = data_loader("Data/ExoplanetSimplifiedData.csv")
-exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName)
-planet_list = exoplanet_data.exoplanetsByName.keys()
+from ProductionCode.Goldilocks import Goldilocks_Determiner
+import random
 from flask import Flask, request, render_template
 
+exoplanet_data = data_loader("Data/ExoplanetSimplifiedData.csv")
+exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName)
+goldilocks_det = Goldilocks_Determiner(exoplanet_data.exoplanetsByName)
+planet_list = list(exoplanet_data.exoplanetsByName.keys())
 app = Flask(__name__)
 
 def underscores_to_spaces(underscored_string):
@@ -42,8 +45,6 @@ def homepage():
     Param: none
     Returns: html page
     """
-    #Gives info for how to navigate the app
-    #Info written in the form of a html template  
     return render_template('homepage.html', planet_list= planet_list)
 
 #Default route
@@ -57,6 +58,37 @@ def about():
     #Info written in the form of a html template  
     return render_template('about.html', planet_list= planet_list)
 
+@app.route('/learn')
+def learn():
+    """A route for a learn page.
+    Param: none
+    Returns: html page
+    """
+    #Gives info about the meaning of goldilocks zone
+    #Info written in the form of a html template  
+    return render_template('learn.html', planet_list= planet_list)
+
+@app.route('/available_planets')
+def available_planets():
+    """A route for a page which shows all planet options.
+    Param: none
+    Returns: html page
+    """
+    #Gives info about the meaning of goldilocks zone
+    #Info written in the form of a html template  
+    return render_template('available_planets.html', planet_list= planet_list)
+
+@app.route('/habitable_planets')
+def habitable_planets():
+    """A route for a page which shows all habitable planets.
+    Param: none
+    Returns: html page
+    """
+    #Gives info about the meaning of goldilocks zone
+    #Info written in the form of a html template  
+    return render_template('habitable_planets.html', planet_list= planet_list)
+
+
 @app.route('/random_planet')
 def random_planet():
     """A rotue that will be deleted later that currently leads to a 
@@ -65,9 +97,12 @@ def random_planet():
     Param: none
     Returns: html page
     """
-    #Gives info for how to navigate the app
-    #Info written in the form of a html template  
-    return render_template('random_planet.html', planet_list= planet_list)
+    random_num = random.randint(0, 5523)
+    planet_name = planet_list[random_num]
+    exoplanet_info = exoplanet_analyzer.get_formatted_planet_info_list(planet_name)
+    goldilocks_result = goldilocks_det.get_goldilocks_zone(planet_name)
+    return render_template ('planet_info.html', planet_name = planet_name, 
+                            planet_info = exoplanet_info, planet_list= planet_list, goldilocks_result= goldilocks_result)
 
 #Route with one parameter that shows planet info
 @app.route('/planet_info''/<planet_name>', strict_slashes=False)
@@ -79,8 +114,9 @@ def get_planet_info(planet_name):
     """
     fixed_planet_name = underscores_to_spaces(planet_name)
     exoplanet_info = exoplanet_analyzer.get_formatted_planet_info_list(fixed_planet_name)
+    goldilocks_result = goldilocks_det.is_in_goldilocks_zone(planet_name)
     return render_template ('planet_info.html', planet_name = fixed_planet_name, 
-                            planet_info = exoplanet_info, planet_list= planet_list)
+                            planet_info = exoplanet_info, planet_list= planet_list, goldilocks_result = goldilocks_result)
 
 
 @app.route('/planet_info', methods = ['GET', 'POST'])
@@ -92,10 +128,10 @@ def planet_info():
     """
     if request.method == 'POST': 
         planet_name = request.form['planet_name']
-        fixed_planet_name = underscores_to_spaces(planet_name)
-        exoplanet_info = exoplanet_analyzer.get_formatted_planet_info_list(fixed_planet_name)
-        return render_template ('planet_info.html', planet_name = fixed_planet_name, 
-                            planet_info = exoplanet_info, planet_list= planet_list)
+        exoplanet_info = exoplanet_analyzer.get_formatted_planet_info_list(planet_name)
+        goldilocks_result = goldilocks_det.get_goldilocks_zone(planet_name)
+        return render_template ('planet_info.html', planet_name = planet_name, 
+                            planet_info = exoplanet_info, planet_list= planet_list, goldilocks_result= goldilocks_result)
     else:
         return "Not a valid request protocol"
 
