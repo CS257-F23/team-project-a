@@ -21,34 +21,50 @@
     <body>
         <h1>Available Planets</h1>
 
-        <nav>
-            <ul class="navigation">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/learn">Learn</a></li>
-                <li><a href="/available_planets">Available Planets</a></li>
-                <li><a href="/habitable_planets">Habitable Planets</a></li>
-                <li><a href="/random_planet">Random Planet</a></li>
-                <li class="search_bar"> <form action="planet_info" method="post">
-                    <label>Find Planet Info</label>
-                    <input type="text" for="Find Planet Info" id="planet_info" name="planet_name" placeholder="Planet Name">
-                        <script> 
-                        $( function() { 
-                            var availableTags = [ 
-                                {% for planet in planet_list %} 
-                                    "{{planet}}", 
-                                {% endfor %} 
-                            ];
-                        $( "#planet_info" ).autocomplete({ 
-                          source: availableTags 
-                        }); 
-                        } ); 
-                      </script> 
-                    <input type="submit" value="Search"></input>
-                    </form>
-                </li>
-              </ul>
-            </nav>
+        <div class="navbar">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/learn">Learn</a>
+            <div class="dropdown">
+              <button class="dropbtn">
+                Planets
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="/available_planets">Available Planets</a>
+                <a href="/habitable_planets">Habitable Planets</a>
+                <a href="/random_planet">Random Planet</a>
+              </div>
+            </div>
+      
+            <div class="topnav-right">
+              <div class="search_bar">
+                <form action="planet_info" method="post">
+                  <label>Find Planet Info</label>
+                  <input
+                    type="text"
+                    for="Find Planet Info"
+                    id="planet_info"
+                    name="planet_name"
+                    placeholder="Planet Name"
+                  />
+                  <script>
+                    $(function() {
+                      var availableTags = [
+                        {% for planet in planet_list %}
+                        "{{planet}}",
+                        {% endfor %}
+                      ];
+                      $("#planet_info").autocomplete({
+                        source: availableTags
+                      });
+                    });
+                  </script>
+                  <input type="submit" value="Search" />
+                </form>
+              </div>
+            </div>
+          </div>
         <div class="habitable_planets">
             <ul>
                 {%for planet in planet_list%}

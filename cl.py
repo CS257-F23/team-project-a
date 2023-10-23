@@ -22,7 +22,7 @@ def parse_command_line():
     parser.add_argument('--goldilocks_planet', metavar='Planet Name', type=str,
                     help='Look up whether that planet is a goldilocks planet (in its star\'s habitable zone) or not')
 
-    #get a list of planets in the habitable zone
+    # get a list of planets in the habitable zone
     parser.add_argument('--habitable_planets', action='store_true',
                         help='Get a list of planets in the habitable zone')
 

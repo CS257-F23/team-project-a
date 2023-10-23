@@ -1,106 +1,165 @@
 h1 {
-    padding-top: 1em;
-    padding-bottom: 1em;
-   /* background-color: rgb(63, 18, 188); */
-    background-image: url("photos/stars.jpg");
-    color: white;
-    text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  /* background-color: rgb(63, 18, 188); */
+  background-image: url("photos/stars.jpg");
+  color: white;
+  text-align: center;
 }
 
-
-nav ul {
-    border: 2px solid rgb(0, 0, 94);
-    list-style-type: none;
-    overflow: hidden;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
-    height: 50px;
-    padding-left: 0px;
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
 }
 
-/* Navigation bar list items should render starting at the left margin. */
-nav li {
-    float: left;
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-/* Navigation bar items should link to elements on the page, or to other pages.
-     This is the "a" tag. So this says "apply this style to links within the nav bar".
-*/
-nav li a {
-    display: block;
-    color: rgb(0, 0, 94);
-    text-decoration: none;
-    text-align: center;
-    padding: 14px 13px 23.5px;
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
 }
 
-/* When you mouse over something in the nav bar, turn it blue. */
-nav li a:hover {
-    color: white;
-    background-color: rgb(0, 0, 94);
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
 }
 
-nav li form {
-    float: right;
-    display: flex;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding: 15px;
+/* Add a red background color to navbar links on hover */
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: rgb(0, 0, 94);
 }
 
-nav li form label {
-    color: rgb(0, 0, 94);
-    padding-right: 10px;
-    height: 7px;
-    width: 200px;
-    display: inline-block;
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
-nav li form input[type=text] {
-    padding: 10px;
-    padding-left: 5px;
-    padding-right: .5em;
-    width: 150px;
-    height: 7px;
-    display: inline-block;
-    border-style: solid;
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
 }
 
-nav li form input[type=submit] {
-    width: 25%;
-    height: 24px;
-    display:inline-block;
-    color: white;
-    background-color: rgb(0, 0, 94);
-    border-style: hidden;
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.topnav-right {
+  float: right;
+}
+/* Styles for the search bar container */
+.search_bar {
+  padding: 1px;
+  border-radius: 1px;
+  width: 400px;
+  margin: 0 auto;
+  text-align: right;
+}
+
+/* Styles for the form and its contents */
+.search_bar form {
+  display: flex;
+  align-items: center;
+}
+
+/* Styles for the label */
+.search_bar label {
+  color: white;
+  padding-right: 10px;
+  height: 5px;
+  width: 500px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Styles for the input field */
+.search_bar input[type="text"] {
+  width: 200%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Styles for the submit button */
+.search_bar input[type="submit"] {
+  background-color: rgb(0, 0, 94);
+  color: white;
+  border: none;
+  border-radius: 1px;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Styles for the autocomplete dropdown (assuming it has a class) */
+.ui-autocomplete {
+  max-height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute;
 }
 
 body {
-    margin-left: 5%;
-    margin-right: 5%;
-    background-color: rgb(201, 210, 250);
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: rgb(201, 210, 250);
 }
 
 /* This means "apply this style to h1 and h2 tags" */
-h1, h2, h3 {
-    font-family: Verdana, Geneva, sans-serif; 
-    text-align: center;
- }
- 
- p {
-     font-family: Verdana, Geneva, sans-serif;
-     /* This next line gives us some extra spacing within a paragraph*/
-     line-height: 1.4;
- }
- 
- li {
-     font-family: Verdana, Geneva, sans-serif;
-     line-height: 1.4;
- }
- 
- nav li {
-     float: left;
-     font-size: 1.1em;
-     font-weight: bold;
- }
+h1,
+h2,
+h3 {
+  font-family: Verdana, Geneva, sans-serif;
+  text-align: center;
+}
+
+p {
+  font-family: Verdana, Geneva, sans-serif;
+  /* This next line gives us some extra spacing within a paragraph*/
+  line-height: 1.4;
+}
+
+li {
+  font-family: Verdana, Geneva, sans-serif;
+  line-height: 1.4;
+}
+
+nav li {
+  float: left;
+  font-size: 1.1em;
+  font-weight: bold;
+}
