@@ -12,6 +12,7 @@ h1 {
   overflow: hidden;
   background-color: #333;
   font-family: Arial;
+  height: 45px;
 }
 
 /* Links inside the navbar */
@@ -93,13 +94,14 @@ h1 {
 /* Styles for the form and its contents */
 .search_bar form {
   display: flex;
-  align-items: center;
+  padding-top: 10px;
 }
 
 /* Styles for the label */
 .search_bar label {
   color: white;
-  padding-right: 10px;
+  padding: 3px 5px;
+  padding-left: 0px;
   height: 5px;
   width: 500px;
   display: inline-block;
@@ -109,7 +111,7 @@ h1 {
 /* Styles for the input field */
 .search_bar input[type="text"] {
   width: 200%;
-  padding: 5px;
+  padding: 3px;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
@@ -120,10 +122,11 @@ h1 {
   color: white;
   border: none;
   border-radius: 1px;
-  padding: 5px 10px;
+  padding: 3px 18px;
   cursor: pointer;
   text-align: center;
 }
+
 
 /* Styles for the autocomplete dropdown (assuming it has a class) */
 .ui-autocomplete {
