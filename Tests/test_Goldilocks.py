@@ -50,7 +50,7 @@ class TestGoldilocks(unittest.TestCase):
         into determine_goldilocks_inner returns the integer 0
         """
         #a planet which does not have this data should return 0 
-        self.assertEqual()
+        self.assertEqual(self.determiner.determine_goldilocks_inner("HIP 79098 AB b"), 0)
 
     def test_det_gold_outer_valid(self):
         """
@@ -66,7 +66,7 @@ class TestGoldilocks(unittest.TestCase):
         into determine_goldilocks_outer returns the integer 0
         """
         #a planet which does not have this data should return 0 
-        self.assertEqual()
+        self.assertEqual(self.determiner.determine_goldilocks_outer("HIP 79098 AB b"), 0)
 
 # TO TEST: 
 #          is_in_goldilocks_zone: 2 cases (in & out), 1 edge (need more info)
