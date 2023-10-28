@@ -1,4 +1,3 @@
-pl_name,discoverymethod,disc_year,disc_facility,pl_orbsmax,pl_rad,pl_bmasse,glat,glon,host_id,
 11 Com b,Radial Velocity,2007,Xinglong Station,1.178000,12.200,4914.89849,78.28058,264.13775,1
 11 UMi b,Radial Velocity,2009,Thueringer Landessternwarte Tautenburg,1.530000,12.300,4684.81420,41.04437,108.71900,2
 14 And b,Radial Velocity,2008,Okayama Astrophysical Observatory,0.775000,13.100,1131.15130,-21.05141,106.41269,3
