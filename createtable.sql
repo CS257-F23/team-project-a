@@ -8,7 +8,7 @@ CREATE TABLE exoplanet_data (
   planet_radius float,
   planet_mass float,
   galactic_latitude float, 
-  galactic_longitude float
+  galactic_longitude float,
   host_id int
 );
 
@@ -20,5 +20,5 @@ CREATE TABLE star_data (
   number_of_planets int,
   stellar_radius float,
   stellar_mass float,
-  stellar_luminosity float,
+  stellar_luminosity float
 );
