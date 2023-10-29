@@ -11,7 +11,6 @@
 #https://physicsworld.com/a/goldilocks-zone-may-not-be-a-good-metric-for-whether-life-exists-on-exoplanets-say-astrobiologists/ 
 #https://nick-stevens.com/2017/05/27/exoplanet-rings-juno-based-textures/
 
-from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
 from ProductionCode.Goldilocks import Goldilocks_Determiner
 from ProductionCode.datasource import DataSource

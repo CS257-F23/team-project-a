@@ -1,7 +1,7 @@
 #should test verify name in database, and maybe just check that a couple planets end up in the database it creates?
 import unittest
 
-from ProductionCode.Exoplanet_Data_Loader import *
+from ProductionCode.datasource import DataSource
 
 
 class TestDataLoader(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestDataLoader(unittest.TestCase):
         Creates an Exoplanet Analyzer filled with data on which tests
         can be run
         """
-        self.data = data_loader('Data/ExoplanetSimplifiedData.csv')
+        self.data = DataSource()
 
     def test_verify_name_in_database_valid(self):
         """

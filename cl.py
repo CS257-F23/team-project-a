@@ -1,7 +1,6 @@
 import argparse
 from ProductionCode.Goldilocks import Goldilocks_Determiner
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
-from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.datasource import DataSource
 
 # -*- coding: utf-8 -*-*
@@ -37,7 +36,7 @@ def run_planet_info(planet_name):
     Param: string
     Returns: none
     """
-    if exoplanet_data.verify_name_in_database(planet_name):
+    if datasource.verify_name_in_database(planet_name):
         exo_analyzer = exoplanetAnalyzer(datasource)
         print(exo_analyzer.get_formatted_planet_info(planet_name))
     else:

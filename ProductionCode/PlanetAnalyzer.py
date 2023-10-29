@@ -46,7 +46,7 @@ class exoplanetAnalyzer:
         s = 0
         #Creates a big string, one label and variable a line
         while (s <= 14):
-            formatedInfoString = formatedInfoString + infoList[s] + exoplanetInfo[s] + "\n"
+            formatedInfoString = formatedInfoString + str(infoList[s]) + str(exoplanetInfo[s]) + "\n"
             s += 1 
         return formatedInfoString
     
