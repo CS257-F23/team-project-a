@@ -7,7 +7,6 @@ from ProductionCode.datasource import DataSource
 # -*- coding: utf-8 -*-*
 
 datasource = DataSource()
-exoplanet_data = data_loader("Data/ExoplanetSimplifiedData.csv")
 
 def parse_command_line():
     """

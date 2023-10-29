@@ -157,3 +157,12 @@ class DataSource:
         else:
             return True 
     
+    def createPlanetList (self):
+        avaliable_planets = []
+        i = 1
+        while i < 5524:
+            current_planet = self.getPlanetNameFromId(i)
+            avaliable_planets.append(current_planet)
+            i = i + 1
+        return avaliable_planets
+    

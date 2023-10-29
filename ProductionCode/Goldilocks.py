@@ -1,4 +1,3 @@
-#REMINDER CHANGE NUMBERS
 from math import *
 
 class Goldilocks_Determiner:
