@@ -14,11 +14,13 @@
 from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
 from ProductionCode.Goldilocks import Goldilocks_Determiner
+from ProductionCode.datasource import DataSource
 import random
 from flask import Flask, request, render_template
 
+datasource = DataSource()
 exoplanet_data = data_loader("Data/ExoplanetSimplifiedData.csv")
-exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName)
+exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName, datasource)
 goldilocks_det = Goldilocks_Determiner(exoplanet_data.exoplanetsByName)
 planet_list = list(exoplanet_data.exoplanetsByName.keys())
 app = Flask(__name__)

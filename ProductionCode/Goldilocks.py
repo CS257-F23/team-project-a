@@ -26,8 +26,8 @@ class Goldilocks_Determiner:
         Return: float
         """
         planet_info = self.exoplanetDictionary[planet_name]
-        if planet_info[13] != '':
-            stellar_lum = 10 ** float(planet_info[13])
+        if planet_info[12] != '':
+            stellar_lum = 10 ** float(planet_info[12])
             return float(stellar_lum)
         else:
             return 0 # if no data available, keeps planet out of zone
@@ -39,8 +39,8 @@ class Goldilocks_Determiner:
         Returns: float
         """
         planet_info = self.exoplanetDictionary[planet_name]
-        if planet_info[8] != '':
-            sm_axis = planet_info[8]
+        if planet_info[7] != '':
+            sm_axis = planet_info[7]
             return float(sm_axis)
         else:
             return -1 # if no data available, keeps planet out of zone

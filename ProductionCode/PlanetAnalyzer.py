@@ -11,7 +11,7 @@ class exoplanetAnalyzer:
         else:
             self.exoplanetDictionary = dictionary
     
-    def __init__(self, dictionary): 
+    def __init__(self, dictionary, dataSource): 
         """
         Constructor for an Exoplanet Analyzer.
         Saves a given dictionary of planet info.
@@ -19,6 +19,7 @@ class exoplanetAnalyzer:
         Returns: none 
         """
         self.exoplanetDictionary = dictionary
+        self.dataSource = dataSource
     
     def get_planet_info(self, planetName):
         """
@@ -26,7 +27,7 @@ class exoplanetAnalyzer:
         Param: string
         Returns: list
         """
-        return self.exoplanetDictionary[planetName]
+        return self.dataSource.getPlanetInfo(planetName)
     
     def format_planet_info(self, exoplanetInfo):
         """
@@ -45,7 +46,7 @@ class exoplanetAnalyzer:
         formatedInfoString = "Planet Info \n\n"
         s = 0
         #Creates a big string, one label and variable a line
-        while (s <= 15):
+        while (s <= 14):
             formatedInfoString = formatedInfoString + infoList[s] + exoplanetInfo[s] + "\n"
             s += 1 
         return formatedInfoString
@@ -59,15 +60,15 @@ class exoplanetAnalyzer:
         """
         #The data in all the lists are already ordered as follows:
         infoList = ["Planet Name: ", "Host Name: ", "Number of Stars: ", "Number of Planets: ",
-                    "Number of Moons: ", "Discovery Method: ", "Discovery Year: ",
+                    "Discovery Method: ", "Discovery Year: ",
                     "Discovery Facility: ", "Semi-Major Axis: ", "Planet Radius: ", "Planet Mass: ",
                     "Stellar Radius: ", "Stellar Mass: ", "Stellar Luminosity: ", 
                     "Galactic Latitude: ", "Galactic Longitude: "]
         
         formatedInfoList = ["Planet Info"]
         s = 0
-        while (s <= 15):
-            formatedInfoList.append(str(infoList[s] + exoplanetInfo[s]))
+        while (s <= 14):
+            formatedInfoList.append(str(infoList[s] + str(exoplanetInfo[s])))
             s += 1 
         return formatedInfoList
 
