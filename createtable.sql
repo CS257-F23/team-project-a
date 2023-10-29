@@ -9,7 +9,8 @@ CREATE TABLE exoplanet_data (
   planet_mass float,
   galactic_latitude float, 
   galactic_longitude float,
-  host_id int
+  host_id int,
+  planet_id int
 );
 
 DROP TABLE IF EXISTS star_data;

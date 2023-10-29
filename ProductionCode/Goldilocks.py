@@ -1,3 +1,4 @@
+#REMINDER CHANGE NUMBERS
 from math import *
 
 class Goldilocks_Determiner:
@@ -10,7 +11,7 @@ class Goldilocks_Determiner:
         """
         self.exoplanetDictionary = {}
 
-    def __init__(self, dict):
+    def __init__(self, dict, datasource):
         """
         Constructor for a Goldilocks Determiner.
         Saves a given dictionary of planet info. 
@@ -18,6 +19,7 @@ class Goldilocks_Determiner:
         Returns: none
         """
         self.exoplanetDictionary = dict
+        self.datasource = datasource
 
     def get_stellar_lum(self, planet_name):
         """ 
@@ -25,8 +27,8 @@ class Goldilocks_Determiner:
         Param: string
         Return: float
         """
-        planet_info = self.exoplanetDictionary[planet_name]
-        if planet_info[12] != '':
+        planet_info = self.datasource.getPlanetInfo(planet_name)
+        if planet_info[12] != None:
             stellar_lum = 10 ** float(planet_info[12])
             return float(stellar_lum)
         else:
@@ -38,8 +40,8 @@ class Goldilocks_Determiner:
         Param: string
         Returns: float
         """
-        planet_info = self.exoplanetDictionary[planet_name]
-        if planet_info[7] != '':
+        planet_info = self.datasource.getPlanetInfo(planet_name)
+        if planet_info[7] != None:
             sm_axis = planet_info[7]
             return float(sm_axis)
         else:
@@ -106,9 +108,12 @@ class Goldilocks_Determiner:
         Returns: list
         """
         habitable_planets = []
-        for planet in self.exoplanetDictionary:
-            if self.is_in_goldilocks_zone(planet):
-                habitable_planets.append(planet)
+        i = 1
+        while i < 5524:
+            current_planet = self.datasource.getPlanetNameFromId(i)
+            if self.is_in_goldilocks_zone(current_planet):
+                habitable_planets.append(current_planet)
+            i = i + 1
 
         return habitable_planets
     

@@ -21,7 +21,7 @@ from flask import Flask, request, render_template
 datasource = DataSource()
 exoplanet_data = data_loader("Data/ExoplanetSimplifiedData.csv")
 exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName, datasource)
-goldilocks_det = Goldilocks_Determiner(exoplanet_data.exoplanetsByName)
+goldilocks_det = Goldilocks_Determiner(exoplanet_data.exoplanetsByName, datasource)
 planet_list = list(exoplanet_data.exoplanetsByName.keys())
 app = Flask(__name__)
 
@@ -99,8 +99,9 @@ def random_planet():
     Returns: html page
     """
     random_num = random.randint(0, 5523)
-    planet_name = planet_list[random_num]
-    exoplanet_info = exoplanet_analyzer.get_formatted_planet_info_list(planet_name)
+    planet_info_list = datasource.getRandomPlanetInfo(random_num)
+    planet_name = planet_info_list[0]
+    exoplanet_info = exoplanet_analyzer.format_info_for_list(planet_info_list)
     goldilocks_result = goldilocks_det.get_goldilocks_zone(planet_name)
     return render_template ('planet_info.html', planet_name = planet_name, 
                             planet_info = exoplanet_info, planet_list= planet_list, goldilocks_result= goldilocks_result)
