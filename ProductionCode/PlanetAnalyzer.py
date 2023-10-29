@@ -1,21 +1,22 @@
 class exoplanetAnalyzer:
-    def __init__(self, dictionary=None):
+    def __init__(self, dataSource=None):
         """
         Constructor for an Exoplanet Analyzer.
-        Uses the given dictionary or an empty one if not provided.
-        Param: dictionary (optional)
+        If called with no parameters, creates a DataSource so the other functions can work.
+        Param: DataSource (optional)
         Returns: none
         """
-        if dictionary is None:
-            self.exoplanetDictionary = {}
+        if dataSource is None:
+            dataSource = DataSource()
+            self.dataSource = dataSource
         else:
-            self.exoplanetDictionary = dictionary
+            self.dataSource = dataSource
     
     def __init__(self, dataSource): 
         """
         Constructor for an Exoplanet Analyzer.
-        Saves a given dictionary of planet info.
-        Param: dictionary
+        Saves an inputted DataSource object that can access the database.
+        Param: DataSource
         Returns: none 
         """
         self.dataSource = dataSource

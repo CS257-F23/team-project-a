@@ -1,7 +1,6 @@
 import argparse
 from ProductionCode.Goldilocks import Goldilocks_Determiner
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
-from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.datasource import DataSource
 
 # -*- coding: utf-8 -*-*

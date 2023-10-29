@@ -11,7 +11,6 @@
 #https://physicsworld.com/a/goldilocks-zone-may-not-be-a-good-metric-for-whether-life-exists-on-exoplanets-say-astrobiologists/ 
 #https://nick-stevens.com/2017/05/27/exoplanet-rings-juno-based-textures/
 
-from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.PlanetAnalyzer import exoplanetAnalyzer
 from ProductionCode.Goldilocks import Goldilocks_Determiner
 from ProductionCode.datasource import DataSource
@@ -51,7 +50,7 @@ def homepage():
 #Default route
 @app.route('/about')
 def about():
-    """A route for an about page. Not yet implemented. No parameters.
+    """A route for an about page. No parameters.
     Param: none
     Returns: html page
     """
@@ -91,9 +90,7 @@ def habitable_planets():
 
 @app.route('/random_planet')
 def random_planet():
-    """A rotue that will be deleted later that currently leads to a 
-     "feature not yet implemented" page that indicates the random planet
-      feature is, believe it or not, not yet implemented. No parameters.
+    """A rotue that leads to a random planet info page.
     Param: none
     Returns: html page
     """
