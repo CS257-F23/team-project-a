@@ -27,6 +27,12 @@ class DataSource:
 
     
     def getHostInfo(self, host_id):
+        """
+        Gets information about the specified star 
+        by querying the star_data database
+        Param: int
+        Returns: tuple of lists
+        """
         cursor = self.connection.cursor()
         query = "SELECT * FROM star_data WHERE host_id=%s;"
         cursor.execute(query, (host_id,))
@@ -35,8 +41,15 @@ class DataSource:
         return databaseStarList
 
     def formatDatabaseLists(self, databasePlanetList, databaseStarList):
+        """
+        Takes info from exoplanet_data and corresponding info from
+        star_data and merges them into a one ordered list
+        Param: tuple of lists, tuple of lists
+        Returns: list
+        """
         mergedInfoList = []
-        #This is pain
+        #The info from exoplanet_data and star_data must be added in a particular order
+        #to match how the planet info page wants it 
         mergedInfoList.append(databasePlanetList[0][0])
         mergedInfoList.append(databaseStarList[0][1])
         mergedInfoList.append(databaseStarList[0][2])
@@ -55,10 +68,10 @@ class DataSource:
 
     def getPlanetInfo(self, planet_name):
         """
-        Prints a list of information about the specified planet 
-        by querying the exoplanet_data database
+        Creates a list of information about the specified planet 
+        and the star it occupies by querying the exoplanet_data database
         Param: string
-        Returns: none
+        Returns: list
         """
         try:
             cursor = self.connection.cursor()
@@ -79,11 +92,13 @@ class DataSource:
             return None
 
     def getRandomPlanetInfo(self, planet_id):
+        
         """
-        Prints a list of information about the specified planet 
-        by querying the exoplanet_data database
-        Param: string
-        Returns: none
+        Creates a list of information about the planet with the specified planet id
+        and the star it occupies by querying the exoplanet_data database
+        Called "Random" because the function is only used for the "Random Planet" feature
+        Param: int
+        Returns: list
         """
         try:
             cursor = self.connection.cursor()
@@ -104,6 +119,12 @@ class DataSource:
             return None
     
     def getPlanetNameFromId (self, planet_id):
+        """
+        Queries the exoplanet_data database to find the name of a planet
+        based on its planet id
+        Param: int
+        Returns: string
+        """
         try:
             cursor = self.connection.cursor()
             query = "SELECT planet_name FROM exoplanet_data WHERE planet_id=%s;"
@@ -117,9 +138,3 @@ class DataSource:
         except Exception as e:
             print ("Something went wrong when executing the query: ", e)
             return None
-
-if __name__ == '__main__':
-    #Just a test; very similar to the code in app.py 
-    my_source = DataSource()
-    thing = my_source.getPlanetInfo('14 Her b')
-    print(thing)
