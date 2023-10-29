@@ -1,15 +1,6 @@
 from math import *
 
 class Goldilocks_Determiner:
-    def __init__(self):
-        """
-        Constructor for a Goldilocks Determiner.
-        If called with no parameters, creates a DataSource so the other functions can work.
-        Param: none
-        Returns: none
-        """
-        dataSource = DataSource()
-        self.dataSource = dataSource
 
     def __init__(self, dataSource):
         """
@@ -53,7 +44,7 @@ class Goldilocks_Determiner:
         Returns: float
         """
         stellar_lum = self.get_stellar_lum(planet_name)
-        inner_bound = sqrt(stellar_lum / 1.1)
+        inner_bound = sqrt(stellar_lum) * .95
 
         return inner_bound
 
@@ -64,7 +55,7 @@ class Goldilocks_Determiner:
         Returns: float
         """
         stellar_lum = self.get_stellar_lum(planet_name)
-        outer_bound = sqrt(stellar_lum / 0.53)
+        outer_bound = sqrt(stellar_lum) * 1.4
 
         return outer_bound
 
