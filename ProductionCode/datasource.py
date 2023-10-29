@@ -138,3 +138,22 @@ class DataSource:
         except Exception as e:
             print ("Something went wrong when executing the query: ", e)
             return None
+
+    def verify_name_in_database(self, planet_name):
+        """
+        Checks if string planet name given is in the dataset: 
+        if not, print error message and return false, otherwise return true
+        Param: string
+        Returns: boolean
+        """
+
+        cursor = self.connection.cursor()
+        query = "SELECT * FROM exoplanet_data WHERE planet_name=%s;"
+        cursor.execute(query, (planet_name,))
+        databasePlanetList = cursor.fetchall()
+
+        if databasePlanetList == []:
+            return False
+        else:
+            return True 
+    

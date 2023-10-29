@@ -20,8 +20,8 @@ from flask import Flask, request, render_template
 
 datasource = DataSource()
 exoplanet_data = data_loader("Data/ExoplanetSimplifiedData.csv")
-exoplanet_analyzer = exoplanetAnalyzer(exoplanet_data.exoplanetsByName, datasource)
-goldilocks_det = Goldilocks_Determiner(exoplanet_data.exoplanetsByName, datasource)
+exoplanet_analyzer = exoplanetAnalyzer(datasource)
+goldilocks_det = Goldilocks_Determiner(datasource)
 planet_list = list(exoplanet_data.exoplanetsByName.keys())
 app = Flask(__name__)
 

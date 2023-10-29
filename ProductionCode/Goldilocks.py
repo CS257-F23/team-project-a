@@ -11,14 +11,13 @@ class Goldilocks_Determiner:
         """
         self.exoplanetDictionary = {}
 
-    def __init__(self, dict, datasource):
+    def __init__(self, datasource):
         """
         Constructor for a Goldilocks Determiner.
         Saves a given dictionary of planet info. 
         Param: dictionary
         Returns: none
         """
-        self.exoplanetDictionary = dict
         self.datasource = datasource
 
     def get_stellar_lum(self, planet_name):

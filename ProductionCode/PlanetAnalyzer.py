@@ -11,14 +11,13 @@ class exoplanetAnalyzer:
         else:
             self.exoplanetDictionary = dictionary
     
-    def __init__(self, dictionary, dataSource): 
+    def __init__(self, dataSource): 
         """
         Constructor for an Exoplanet Analyzer.
         Saves a given dictionary of planet info.
         Param: dictionary
         Returns: none 
         """
-        self.exoplanetDictionary = dictionary
         self.dataSource = dataSource
     
     def get_planet_info(self, planetName):
@@ -38,7 +37,7 @@ class exoplanetAnalyzer:
         """
         #The data in all the lists are already ordered as follows:
         infoList = ["Planet Name: ", "Host Name: ", "Number of Stars: ", "Number of Planets: ",
-                    "Number of Moons: ", "Discovery Method: ", "Discovery Year: ",
+                    "Discovery Method: ", "Discovery Year: ",
                     "Discovery Facility: ", "Semi-Major Axis: ", "Planet Radius: ", "Planet Mass: ",
                     "Stellar Radius: ", "Stellar Mass: ", "Stellar Luminosity: ", 
                     "Galactic Latitude: ", "Galactic Longitude: "]
