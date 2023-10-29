@@ -4,20 +4,21 @@ class Goldilocks_Determiner:
     def __init__(self):
         """
         Constructor for a Goldilocks Determiner.
-        Uses an empty dictionary in place of a given one. 
+        If called with no parameters, creates a DataSource so the other functions can work.
         Param: none
         Returns: none
         """
-        self.exoplanetDictionary = {}
+        dataSource = DataSource()
+        self.dataSource = dataSource
 
-    def __init__(self, datasource):
+    def __init__(self, dataSource):
         """
         Constructor for a Goldilocks Determiner.
-        Saves a given dictionary of planet info. 
-        Param: dictionary
+        Saves an inputted DataSource object that can access the database.
+        Param: DataSource
         Returns: none
         """
-        self.datasource = datasource
+        self.dataSource = dataSource
 
     def get_stellar_lum(self, planet_name):
         """ 
@@ -25,7 +26,7 @@ class Goldilocks_Determiner:
         Param: string
         Return: float
         """
-        planet_info = self.datasource.getPlanetInfo(planet_name)
+        planet_info = self.dataSource.getPlanetInfo(planet_name)
         if planet_info[12] != None:
             stellar_lum = 10 ** float(planet_info[12])
             return float(stellar_lum)
@@ -38,7 +39,7 @@ class Goldilocks_Determiner:
         Param: string
         Returns: float
         """
-        planet_info = self.datasource.getPlanetInfo(planet_name)
+        planet_info = self.dataSource.getPlanetInfo(planet_name)
         if planet_info[7] != None:
             sm_axis = planet_info[7]
             return float(sm_axis)
@@ -108,7 +109,7 @@ class Goldilocks_Determiner:
         habitable_planets = []
         i = 1
         while i < 5524:
-            current_planet = self.datasource.getPlanetNameFromId(i)
+            current_planet = self.dataSource.getPlanetNameFromId(i)
             if self.is_in_goldilocks_zone(current_planet):
                 habitable_planets.append(current_planet)
             i = i + 1
