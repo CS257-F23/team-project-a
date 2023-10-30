@@ -139,6 +139,35 @@ class DataSource:
             print ("Something went wrong when executing the query: ", e)
             return None
 
+    def getHostIdFromPlanet(self, planet_name):
+        '''
+        Takes a string planet name and returns the associated id of it's host star
+        by querying the exoplanet database
+        '''
+        
+        try:
+            cursor = self.connection.cursor()
+            query = "SELECT host_id FROM exoplanet_data WHERE planet_name=%s;"
+            cursor.execute(query, (planet_name,))
+            host_id = cursor.fetchall()
+            return host_id
+        
+        #Failsafe in case of any problems
+        except Exception as e:
+            print ("Something went wrong when executing the query: ", e)
+            return None
+
+    def addValueToGoldilocks(self, value, planet_name):
+        cursor = self.connection.cursor()
+        query = "UPDATE exoplanet_data SET in_goldilocks = value=%s WHERE planet_name = planet_name=%s;"
+        cursor.execute(query, (value, planet_name,))
+
+    def getGoldilocks(self, planet_name):
+        cursor = self.connection.cursor()
+        query = "SELECT in_goldilocks FROM exoplanet_data WHERE planet_name = planet_name=%s;"
+        cursor.execute(query, (planet_name,))
+        return cursor.fetchall()
+
     def verify_name_in_database(self, planet_name):
         """
         Checks if string planet name given is in the dataset: 

@@ -10,7 +10,8 @@ CREATE TABLE exoplanet_data (
   galactic_latitude float, 
   galactic_longitude float,
   host_id int,
-  planet_id int
+  planet_id int,
+  in_goldilocks boolean
 );
 
 DROP TABLE IF EXISTS star_data;
@@ -21,5 +22,5 @@ CREATE TABLE star_data (
   number_of_planets int,
   stellar_radius float,
   stellar_mass float,
-  stellar_luminosity float
+  stellar_luminosity float,
 );
