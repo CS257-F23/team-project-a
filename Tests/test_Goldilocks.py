@@ -91,8 +91,35 @@ class TestGoldilocks(unittest.TestCase):
         """
         planet_name = "HIP 79098 AB b"
         self.assertEqual(self.determiner.is_in_goldilocks_zone(planet_name), None)
+        
+    def test_get_goldilocks_zone_true(self):
+        """
+        Test that inputting a planet inside the goldilocks zone
+        into get_goldilocks_zone returns the correct string
+        """
+        planet_name = "ups And d"
+        expected_return = 'ups And d is in the goldilocks zone! (by Solar Equivalent AU)'
+        self.assertEqual(self.determiner.get_goldilocks_zone(planet_name), expected_return)
+
+    def test_get_goldilocks_zone_false(self):
+        """
+        Test that inputting a planet outside the goldilocks zone
+        into get_goldilocks_zone returns the correct string
+        """
+        planet_name = "tau Boo b"
+        expected_return = 'tau Boo b is not in the goldilocks zone (by Solar Equivalent AU).'
+        self.assertEqual(self.determiner.get_goldilocks_zone(planet_name), expected_return)
+        
+    def test_get_goldilocks_zone_unclear(self):
+        """
+        Test that inputting a planet with insufficient information
+        into get_goldilocks_zone returns the correct string
+        """
+        planet_name = 'HIP 79098 AB b'
+        expected_return = 'Unfortunately, the database does not contain sufficient information to determine if HIP 79098 AB b is in the goldilocks zone (by Solar Equivalent AU).'
+        self.assertEqual(self.determiner.get_goldilocks_zone(planet_name), expected_return)
+        
 # TO TEST: 
-#          get_goldilocks_zone: 2 cases (in & out)
 #          create_habitable_list: 2 cases, in and out
 #          print_habitable_list: 2 cases, in and out
 
