@@ -78,8 +78,9 @@ class DataSource:
             query = "SELECT * FROM exoplanet_data WHERE planet_name=%s;"
             cursor.execute(query, (planet_name,))
             databasePlanetList = cursor.fetchall()
-
+    
             host_id = int(databasePlanetList[0][9])
+
             databaseStarList = self.getHostInfo(host_id)
 
             mergedInfoList = self.formatDatabaseLists(databasePlanetList, databaseStarList)
@@ -157,17 +158,33 @@ class DataSource:
             print ("Something went wrong when executing the query: ", e)
             return None
 
-    def addValueToGoldilocks(self, value, planet_name):
+    def setGoldilocksTrue(self, planet_name):
+        """
+        Takes planet name and sets corresponding in_goldilocks value to True
+        """
         cursor = self.connection.cursor()
-        query = "UPDATE exoplanet_data SET in_goldilocks = value=%s WHERE planet_name = planet_name=%s;"
-        cursor.execute(query, (value, planet_name,))
+        query = "UPDATE exoplanet_data SET in_goldilocks='1' WHERE planet_name=%s;"
+        cursor.execute(query, (planet_name,))
+        self.connection.commit()
+
+    def setGoldilocksFalse(self, planet_name):
+        """
+        Takes planet name and sets corresponding in_goldilocks value to False
+        """
+        cursor = self.connection.cursor()
+        query = "UPDATE exoplanet_data SET in_goldilocks='0' WHERE planet_name=%s;"
+        cursor.execute(query, (planet_name,))
+        self.connection.commit()
 
     def getGoldilocks(self, planet_name):
+        """
+        Takes planet name and returns corresponding in_goldilocks value
+        """
         cursor = self.connection.cursor()
-        query = "SELECT in_goldilocks FROM exoplanet_data WHERE planet_name = planet_name=%s;"
+        query = "SELECT in_goldilocks FROM exoplanet_data WHERE planet_name=%s;"
         cursor.execute(query, (planet_name,))
         return cursor.fetchall()
-
+    
     def verify_name_in_database(self, planet_name):
         """
         Checks if string planet name given is in the dataset: 
@@ -187,6 +204,9 @@ class DataSource:
             return True 
     
     def createPlanetList (self):
+        '''
+        Creates and returns a list of all planets in the database.
+        '''
         avaliable_planets = []
         i = 1
         while i < 5524:
@@ -194,4 +214,3 @@ class DataSource:
             avaliable_planets.append(current_planet)
             i = i + 1
         return avaliable_planets
-    

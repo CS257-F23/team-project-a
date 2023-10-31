@@ -11,15 +11,15 @@ class Goldilocks_Determiner:
         """
         self.dataSource = dataSource
 
-    def get_stellar_lum(self, star_name):
+    def get_stellar_lum(self, star_id):
         """ 
         Takes star name and returns it's stellar luminosity
         Param: string
         Return: float
         """
-        host_info = self.dataSource.getHostInfo(star_name)
-        if host_info[12] != None:
-            stellar_lum = 10 ** float(host_info[7])
+        host_info = self.dataSource.getHostInfo(star_id)
+        if host_info[0][6] != None:
+            stellar_lum = 10 ** float(host_info[0][6])
             return float(stellar_lum)
         else:
             return 0 # if no data available, keeps planet out of zone
@@ -37,39 +37,40 @@ class Goldilocks_Determiner:
         else:
             return -1 # if no data available, keeps planet out of zone
 
-    def determine_goldilocks_inner(self, star_name):
+    def determine_goldilocks_inner(self, star_id):
         """
         Takes planet name and uses returns an ordered pair (inner, outer) bound
         Param: string
         Returns: float
         """
-        stellar_lum = self.get_stellar_lum(star_name)
+        stellar_lum = self.get_stellar_lum(star_id)
         inner_bound = sqrt(stellar_lum) * .95
 
         return inner_bound
 
-    def determine_goldilocks_outer(self, star_name):
+    def determine_goldilocks_outer(self, star_id):
         """
         Takes planet name and uses returns an ordered pair (inner, outer) bound
         Param: string
         Returns: float
         """
-        stellar_lum = self.get_stellar_lum(star_name)
+        stellar_lum = self.get_stellar_lum(star_id)
         outer_bound = sqrt(stellar_lum) * 1.4
 
         return outer_bound
 
-    def found_in_goldilocks_zone(self, planet_name):
+    def determine_in_goldilocks_zone(self, planet_name):
         """ 
         Takes planet name and returns boolean yes or no corresponding 
-        with if the planet is within the bounds of it's goldilocks zone
+        with if the planet is within the bounds of it's goldilocks zone,
+        for use in updating database.
         Param: string
         Returns: boolean
         """ 
-        star_name = self.dataSource.getHostIdFromPlanet(planet_name)
+        star_id = self.dataSource.getHostIdFromPlanet(planet_name)[0][0]
         planet_stellar_dist = self.get_sm_axis(planet_name)
-        inner = self.determine_goldilocks_inner(star_name)
-        outer =  self.determine_goldilocks_outer(star_name)
+        inner = self.determine_goldilocks_inner(star_id)
+        outer =  self.determine_goldilocks_outer(star_id)
 
         if inner < planet_stellar_dist < outer:
             return True
@@ -79,7 +80,10 @@ class Goldilocks_Determiner:
             return False
         
     def is_in_goldilocks_zone(self, planet_name):
-        if self.dataSource.getGoldilocks(planet_name):
+        """
+        Takes planet name and returns true or false depending on if it is in the goldilocks zone
+        """
+        if self.dataSource.getGoldilocks(planet_name)[0][0]:
             return True
         else:
             return False
@@ -98,21 +102,39 @@ class Goldilocks_Determiner:
         else:
             return(planet_name + ' is not in the goldilocks zone (by Solar Equivalent AU).')
 
-    def create_habitable_column(self):
+    def update_habitable_column(self):
         """
-        Creates a list of habitable planets using is_in_goldilocks_zone and iterating through the dictionary
+        Updates the in_goldilocks column using determine_in_goldilocks_zone and iterating through the planet ids.
         Param: none
-        Returns: list
+        Returns: none
         """
         i = 1
         while i < 5524:
             current_planet = self.dataSource.getPlanetNameFromId(i)
-            if self.is_in_goldilocks_zone(current_planet):
-                self.dataSource.addvaluetoGoldilocks(current_planet, True)
+            if self.determine_in_goldilocks_zone(current_planet):
+                self.dataSource.setGoldilocksTrue(current_planet)
             else:
-                self.dataSource.addvaluetoGoldilocks(current_planet, False)
+                self.dataSource.setGoldilocksFalse(current_planet)
             i = i + 1
+        self.dataSource.connection.close()
 
+    def get_habitable_list(self):
+        """
+        Returns the list of habitable planets
+        Param: none
+        Returns: list
+        """
+
+        habitable_planets = []
+        cursor = self.dataSource.connection.cursor()
+        query = "SELECT planet_name FROM exoplanet_data;"
+        cursor.execute(query,)
+        planets = cursor.fetchall()
+        for planet in planets:
+            if self.is_in_goldilocks_zone(planet):
+                habitable_planets.append(planet[0])
+        return habitable_planets
+        
     def print_habitable_list(self):
         """
         Prints the list of habitable planets
@@ -121,6 +143,10 @@ class Goldilocks_Determiner:
         """
 
         print("The habitable planets (by Solar Equivalent AU) found in this database are")
-        for planet in list:
-            print(planet)
-    
+        cursor = self.dataSource.connection.cursor()
+        query = "SELECT planet_name FROM exoplanet_data;"
+        cursor.execute(query,)
+        planets = cursor.fetchall()
+        for planet in planets:
+            if self.is_in_goldilocks_zone(planet):
+                print(planet[0])

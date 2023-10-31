@@ -84,7 +84,7 @@ def habitable_planets():
     Param: none
     Returns: html page
     """
-    habitable_list = goldilocks_det.create_habitable_list()
+    habitable_list = goldilocks_det.get_habitable_list()
     return render_template('habitable_planets.html', planet_list= planet_list, habitable_list= habitable_list)
 
 
