@@ -67,9 +67,31 @@ class TestGoldilocks(unittest.TestCase):
         """
         #a planet which does not have this data should return 0 
         self.assertEqual(self.determiner.determine_goldilocks_outer("HIP 79098 AB b"), 0)
+        
+    def test_is_in_goldilocks_zone_true(self):
+        """
+        Test that inputting a planet which is calculated to be in the habitable zone
+        into is_in_goldilocks_zone returns True
+        """
+        planet_name = "TRAPPIST-1 e"
+        self.assertEqual(self.determiner.is_in_goldilocks_zone(planet_name), True)
 
+    def test_is_in_goldilocks_zone_false(self):
+        """
+        Test that inputting a planet which is calculated to not be in the habitable zone
+        into is_in_goldilocks_zone returns False
+        """
+        planet_name = "14 Her b"
+        self.assertEqual(self.determiner.is_in_goldilocks_zone(planet_name), False)
+
+    def test_is_in_goldilocks_zone_unclear(self):
+        """
+        Test that inputting a planet which is missing info
+        into is_in_goldilocks_zone returns None
+        """
+        planet_name = "HIP 79098 AB b"
+        self.assertEqual(self.determiner.is_in_goldilocks_zone(planet_name), None)
 # TO TEST: 
-#          is_in_goldilocks_zone: 2 cases (in & out), 1 edge (need more info)
 #          get_goldilocks_zone: 2 cases (in & out)
 #          create_habitable_list: 2 cases, in and out
 #          print_habitable_list: 2 cases, in and out
