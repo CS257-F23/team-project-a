@@ -83,11 +83,35 @@ class Goldilocks_Determiner:
         """
         Takes planet name and returns true or false depending on if it is in the goldilocks zone
         """
-        if self.dataSource.getGoldilocks(planet_name)[0][0]:
+        if self.getGoldilocksValue(planet_name)[0][0] == True:
             return True
-        else:
+        elif self.getGoldilocksValue(planet_name)[0][0] == False:
             return False
+        else:
+            return None
         
+    def setGoldilocks(self, in_goldilocks, planet_name):
+        """
+        Takes planet name and sets corresponding in_goldilocks value to given boolean
+        """
+        cursor = self.dataSource.connection.cursor()
+        if in_goldilocks == 'NULL':
+            query = "UPDATE exoplanet_data SET in_goldilocks=NULL WHERE planet_name=%s;"
+            cursor.execute(query, (planet_name,))
+        else:
+            query = "UPDATE exoplanet_data SET in_goldilocks=%s WHERE planet_name=%s;"
+            cursor.execute(query, (in_goldilocks, planet_name,))
+        self.dataSource.connection.commit()
+
+    def getGoldilocksValue(self, planet_name):
+        """
+        Takes planet name and returns corresponding in_goldilocks value
+        """
+        cursor = self.dataSource.connection.cursor()
+        query = "SELECT in_goldilocks FROM exoplanet_data WHERE planet_name=%s;"
+        cursor.execute(query, (planet_name,))
+        return cursor.fetchall()
+    
     def get_goldilocks_zone(self, planet_name):
         """
         Takes planet name and returns a nice message about if it is in the goldilocks zone
@@ -112,11 +136,12 @@ class Goldilocks_Determiner:
         while i < 5524:
             current_planet = self.dataSource.getPlanetNameFromId(i)
             if self.determine_in_goldilocks_zone(current_planet):
-                self.dataSource.setGoldilocksTrue(current_planet)
+                self.setGoldilocks(True, current_planet)
+            elif self.determine_in_goldilocks_zone(current_planet) == None:
+                self.setGoldilocks('NULL', current_planet)
             else:
-                self.dataSource.setGoldilocksFalse(current_planet)
+                self.setGoldilocks(False, current_planet)
             i = i + 1
-        self.dataSource.connection.close()
 
     def get_habitable_list(self):
         """
