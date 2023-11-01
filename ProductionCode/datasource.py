@@ -180,10 +180,20 @@ class DataSource:
         '''
         Creates and returns a list of all planets in the database.
         '''
-        avaliable_planets = []
-        i = 1
-        while i < 5524:
-            current_planet = self.getPlanetNameFromId(i)
-            avaliable_planets.append(current_planet)
-            i = i + 1
-        return avaliable_planets
+        cursor = self.connection.cursor()
+        query = "SELECT planet_name FROM exoplanet_data;"
+        cursor.execute(query,)
+        databasePlanetTupleList = cursor.fetchall()
+        available_planets = self.formatPlanetList(databasePlanetTupleList)
+        return available_planets
+
+    def formatPlanetList (self, databasePlanetTupleList):
+        '''
+        Takes a list containing tuples and returns a list containing the first item in each tuple.
+        Param: list of tuples
+        Return: list of strings
+        '''
+        available_planets = []
+        for i in range(len(databasePlanetTupleList)):
+            available_planets.append(databasePlanetTupleList[i][0])
+        return available_planets

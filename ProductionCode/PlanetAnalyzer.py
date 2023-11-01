@@ -1,17 +1,4 @@
 class exoplanetAnalyzer:
-    def __init__(self, dataSource=None):
-        """
-        Constructor for an Exoplanet Analyzer.
-        If called with no parameters, creates a DataSource so the other functions can work.
-        Param: DataSource (optional)
-        Returns: none
-        """
-        if dataSource is None:
-            dataSource = DataSource()
-            self.dataSource = dataSource
-        else:
-            self.dataSource = dataSource
-    
     def __init__(self, dataSource): 
         """
         Constructor for an Exoplanet Analyzer.

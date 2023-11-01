@@ -150,14 +150,11 @@ class Goldilocks_Determiner:
         Returns: list
         """
 
-        habitable_planets = []
         cursor = self.dataSource.connection.cursor()
-        query = "SELECT planet_name FROM exoplanet_data;"
+        query = "SELECT planet_name FROM exoplanet_data WHERE in_goldilocks= True;"
         cursor.execute(query,)
         planets = cursor.fetchall()
-        for planet in planets:
-            if self.is_in_goldilocks_zone(planet):
-                habitable_planets.append(planet[0])
+        habitable_planets = self.dataSource.formatPlanetList(planets)
         return habitable_planets
         
     def print_habitable_list(self):
