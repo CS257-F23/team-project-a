@@ -26,7 +26,7 @@ class TestGoldilocks(unittest.TestCase):
         host_id = 966
         self.assertEqual(self.determiner.get_stellar_lum(host_id), 0)
 
-    def test_get_sm_axis_valid1(self):
+    def test_get_sm_axis_valid(self):
         planet_name = "11 Com b"
         det_sm = self.determiner.get_sm_axis(planet_name)
         self.assertEqual(det_sm, 1.178000)
