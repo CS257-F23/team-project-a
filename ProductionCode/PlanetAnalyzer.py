@@ -8,14 +8,6 @@ class exoplanetAnalyzer:
         """
         self.dataSource = dataSource
     
-    def get_planet_info(self, planetName):
-        """
-        Takes planet name and returns a list of info about that planet.
-        Param: string
-        Returns: list
-        """
-        return self.dataSource.getPlanetInfo(planetName)
-    
     def format_planet_info(self, exoplanetInfo):
         """
         Takes a list of planet info and returns a 
@@ -65,7 +57,7 @@ class exoplanetAnalyzer:
         Param: string
         Returns: list
         """
-        exoplanetInfo = self.get_planet_info(planet_name)
+        exoplanetInfo = self.dataSource.getPlanetInfo(planet_name)
         formatedExoplanetInfo = self.format_info_for_list(exoplanetInfo)
         return(formatedExoplanetInfo)
 
@@ -75,7 +67,7 @@ class exoplanetAnalyzer:
         Param: string
         Returns: string
         """
-        exoplanetInfo = self.get_planet_info(planetName)
+        exoplanetInfo = self.dataSource.getPlanetInfo(planetName)
         formatedExoplanetInfo = self.format_planet_info(exoplanetInfo)
         return(formatedExoplanetInfo)
     
