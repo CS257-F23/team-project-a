@@ -103,7 +103,7 @@ def random_planet():
                             planet_info = exoplanet_info, planet_list= planet_list, goldilocks_result= goldilocks_result)
 
 #Route with one parameter that shows planet info
-@app.route('/planet_info''/<planet_name>', strict_slashes=False)
+@app.route('/planet_info/<planet_name>', strict_slashes=False)
 def get_planet_info(planet_name):
     """ 
     url route: Takes a planet name and creates a web page with that planet's info
@@ -132,6 +132,10 @@ def planet_info():
                             planet_info = exoplanet_info, planet_list= planet_list, goldilocks_result= goldilocks_result)
     else:
         return "Not a valid request protocol"
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
 if __name__ == "__main__":
