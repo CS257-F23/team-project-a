@@ -11,16 +11,20 @@ class TestGoldilocks(unittest.TestCase):
         self.data = DataSource()
         self.determiner = Goldilocks_Determiner(self.data)
     
-    def test_get_stellar_lum_valid1(self):
-        self.assertEqual(self.determiner.get_stellar_lum("14 And b"), 10 ** 1.840)
+    def test_get_stellar_lum_valid(self):
+        """
+        Test that inputting a valid hostid into get_stellar_lum returns expected value.
+        """
+        host_id = 3
+        self.assertEqual(self.determiner.get_stellar_lum(host_id), 10 ** 1.840)
 
     def test_get_stellar_lum_invalid(self):
         """
-        Test that inputting a planet that doesn't have any data for stellar luminosity
+        Test that inputting a star that doesn't have any data for stellar luminosity
         into get_stellar_luminosity returns the integer 0
         """
-        #a planet which does not have this data should return 0 
-        self.assertEqual(self.determiner.get_stellar_lum("HIP 79098 AB b"), 0)
+        host_id = 966
+        self.assertEqual(self.determiner.get_stellar_lum(host_id), 0)
 
     def test_get_sm_axis_valid1(self):
         planet_name = "11 Com b"
@@ -39,39 +43,41 @@ class TestGoldilocks(unittest.TestCase):
 
     def test_det_gold_inner_valid(self):
         """
-        Test that inputting a planet that has data for stellar luminosity
+        Test that inputting a star that has data for stellar luminosity
         into determine_goldilocks_inner returns the correctly computed inner bound
+        Uses host 2587 = Kepler-22
         """
         # example from https://www.planetarybiology.com/calculating_habitable_zone.html
-        planet_name = "Kepler-22 b"
+        host_id = 2587
         #using rounding equals because no websites report as many sig figs
-        self.assertEqual(round(self.determiner.determine_goldilocks_inner(planet_name), 2), 0.76)
+        self.assertEqual(round(self.determiner.determine_goldilocks_inner(host_id), 2), 0.76)
 
     def test_det_gold_inner_invalid(self):
         """
-        Test that inputting a planet that doesn't have any data for stellar luminosity
+        Test that inputting a star that doesn't have any data for stellar luminosity
         into determine_goldilocks_inner returns the integer 0
         """
-        #a planet which does not have this data should return 0 
-        self.assertEqual(self.determiner.determine_goldilocks_inner("HIP 79098 AB b"), 0)
+        host_id = 966
+        self.assertEqual(self.determiner.determine_goldilocks_inner(host_id), 0)
 
     def test_det_gold_outer_valid(self):
         """
-        Test that inputting a planet that has data for stellar luminosity
+        Test that inputting a star that has data for stellar luminosity
         into determine_goldilocks_outer returns the corretly computed outer bound
+        Uses host 2587 = Kepler-22
         """
         # example from https://www.planetarybiology.com/calculating_habitable_zone.html
-        planet_name = "Kepler-22 b"
+        host_id = 2587
         #using rounding equals because no websites report as many sig figs
-        self.assertEqual(round(self.determiner.determine_goldilocks_outer(planet_name), 1), 1.1)
+        self.assertEqual(round(self.determiner.determine_goldilocks_outer(host_id), 1), 1.1)
 
     def test_det_gold_outer_invalid(self):
         """
         Test that inputting a planet that doesn't have any data for stellar luminosity
         into determine_goldilocks_outer returns the integer 0
         """
-        #a planet which does not have this data should return 0 
-        self.assertEqual(self.determiner.determine_goldilocks_inner("HIP 79098 AB b"), 0)
+        host_id = 966
+        self.assertEqual(self.determiner.determine_goldilocks_inner(host_id), 0)
     
     
     def test_is_in_goldilocks_zone_true(self):
@@ -108,7 +114,7 @@ class TestGoldilocks(unittest.TestCase):
 
 # TO TEST: 
 #          get_goldilocks_zone: 2 cases (in & out)
-#          create_habitable_list: 2 cases, in and out
+#          get_habitable_list: 2 cases, in and out
 #          print_habitable_list: 2 cases, in and out
 
 
