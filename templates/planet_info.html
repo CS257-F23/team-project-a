@@ -61,25 +61,31 @@
         </div>
       </div>
     </div>
+    
+    <div class="leftColumn">
+      <div class="goldilocks_info">
+        <p>{{goldilocks_result}}</p>
+        <p>Learn more about what that means <a href="/learn">here</a></p>
+      </div>
 
-    <img src={{ url_for('static', filename='photos/generic_exoplanet.jpg') }}
-    alt="Computer rendering of an exoplanet" />
-
-    <div class="planet_info">
-      <ul>
-        {%for item in planet_info%}
-        <li>{{item}}</li>
-        {% endfor %}
-      </ul>
+      <img src={{ url_for('static', filename='photos/generic_exoplanet.jpg') }}
+      alt="Computer rendering of an exoplanet" />
+      
     </div>
 
-    <div class="container">
-      <a href="/random_planet" class="button">Randomize!</a>
+    <div class="rightColumn" >
+      <div class="planet_info">
+        <ul>
+          {%for item in planet_info%}
+          <li>{{item}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+  
+      <div class="randomize_button">
+        <a href="/random_planet" class="button">Randomize!</a>
+      </div>
     </div>
 
-    <div class="goldilocks_info">
-      <p>{{goldilocks_result}}</p>
-      <p>Learn more about what that means <a href="/learn">here</a></p>
-    </div>
   </body>
 </html>
