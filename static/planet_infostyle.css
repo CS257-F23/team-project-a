@@ -152,25 +152,57 @@ li {
   line-height: 1.75;
 }
 
-div.planet_info {
+div.leftColumn{
+  padding-top: 10px;
+  display: flex;
+  float: left;
+  width: 45%;
+}
+
+div.leftColumn div.goldilocks_info {
+  display: block;
+  position: absolute;
+  background-color: white;
+  border-color: rgb(0, 0, 94);
+  text-align: center;
+  width: 45%;
+  height: 100px;
+  padding: 5px;
+}
+
+div.leftcolumn img {
+  padding-top: 125px;
+  position: absolute;
+  display: block;
+  width: 45.7%;
+}
+
+div.rightColumn {
+  float: right;
+  display: flex;
+  width: 45%;
+}
+
+div.rightColumn div.planet_info {
+  position: absolute;
   list-style-type: none;
   display: flex;
-  width: 40%;
+  width: 300px;
   float: right;
   padding-left: 5%;
+  padding-top: 10px;
 }
 
-img {
-  float: left;
-  width: 55%;
-  margin-top: 20px;
+div.rightColumn div.randomize_button {
+  position: absolute;
+  text-align: center;
+  padding-left: 15%;
+  padding-top: 450px;
+  float: right;
 }
 
-.container {
-  text-align: center; /* Center the button horizontally within the container */
-  padding: 20px; /* Add padding around the button */
-}
-.button {
+div.rightColumn .button {
+  position: absolute;
   background-color: rgb(0, 0, 94);
   border: none;
   color: white;
@@ -183,15 +215,6 @@ img {
   cursor: pointer;
   border-radius: 12px;
   font-family: "Arial", sans-serif;
-}
-
-div.goldilocks_info {
-  display: block;
-  float:left;
-  background-color: white;
-  border-color: rgb(0, 0, 94);
-  width: 40%;
-  padding: 10px;
 }
 
 /* This means "apply this style to h1 and h2 tags" */
