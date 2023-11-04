@@ -61,8 +61,7 @@ def run_habitable_planets():
     Param: none
     Returns: none
     """
-    goldilocks_determiner = Goldilocks_Determiner(datasource)
-    goldilocks_determiner.print_habitable_list()
+    datasource.printHabitablePlanetList()
 
 
 def main():

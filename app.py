@@ -1,4 +1,4 @@
-#We used the following websites in mking this:
+#We used the following websites in making this:
 #https://ttl255.com/jinja2-tutorial-part-2-loops-and-conditionals/#:~:text=For%20loops%20start%20with%20%7B%25,we%20go%20over%20the%20elements. 
 #https://w3schools.com/cssref/pr_pos_right.php 
 #https://www.w3schools.com/cssref/pr_background-image.php 
@@ -84,7 +84,7 @@ def habitable_planets():
     Param: none
     Returns: html page
     """
-    habitable_list = goldilocks_det.get_habitable_list()
+    habitable_list = datasource.createHabitablePlanetList()
     return render_template('habitable_planets.html', planet_list= planet_list, habitable_list= habitable_list)
 
 
@@ -94,7 +94,8 @@ def random_planet():
     Param: none
     Returns: html page
     """
-    random_num = random.randint(0, 5523)
+    total_number_of_planets = 5523
+    random_num = random.randint(0, total_number_of_planets)
     planet_info_list = datasource.getRandomPlanetInfo(random_num)
     planet_name = planet_info_list[0]
     exoplanet_info = exoplanet_analyzer.format_info_for_list(planet_info_list)
@@ -103,7 +104,7 @@ def random_planet():
                             planet_info = exoplanet_info, planet_list= planet_list, goldilocks_result= goldilocks_result)
 
 #Route with one parameter that shows planet info
-@app.route('/planet_info/<planet_name>', strict_slashes=False)
+@app.route('/planet_info''/<planet_name>', strict_slashes=False)
 def get_planet_info(planet_name):
     """ 
     url route: Takes a planet name and creates a web page with that planet's info
@@ -132,10 +133,6 @@ def planet_info():
                             planet_info = exoplanet_info, planet_list= planet_list, goldilocks_result= goldilocks_result)
     else:
         return "Not a valid request protocol"
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
 
 
 if __name__ == "__main__":

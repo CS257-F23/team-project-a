@@ -163,10 +163,12 @@ class DataSource:
         Takes planet name and returns corresponding in_goldilocks value
         """
         try:
-            cursor = self.dataSource.connection.cursor()
+            cursor = self.connection.cursor()
             query = "SELECT in_goldilocks FROM exoplanet_data WHERE planet_name=%s;"
             cursor.execute(query, (planet_name,))
-            return cursor.fetchall()
+            goldilocksTuple = cursor.fetchall()
+            goldilocksValue = goldilocksTuple[0][0]
+            return goldilocksValue
 
         #Failsafe in case of any problems
         except Exception as e:
@@ -202,6 +204,25 @@ class DataSource:
         available_planets = self.formatPlanetList(databasePlanetTupleList)
         return available_planets
 
+    def createHabitablePlanetList (self):
+        """
+        Returns the list of habitable planets
+        Param: none
+        Returns: list
+        """
+        try:
+            cursor = self.connection.cursor()
+            query = "SELECT planet_name FROM exoplanet_data WHERE in_goldilocks= True;"
+            cursor.execute(query,)
+            databaseHabitablePlanetTupleList = cursor.fetchall()
+            habitable_planets = self.formatPlanetList(databaseHabitablePlanetTupleList)
+            return habitable_planets
+
+        #Failsafe in case of any problems
+        except Exception as e:
+            print ("Something went wrong when executing the query: ", e)
+            return None
+
     def formatPlanetList (self, databasePlanetTupleList):
         '''
         Takes a list containing tuples and returns a list containing the first item in each tuple.
@@ -212,3 +233,29 @@ class DataSource:
         for i in range(len(databasePlanetTupleList)):
             available_planets.append(databasePlanetTupleList[i][0])
         return available_planets
+
+    def printHabitablePlanetList (self): 
+        """
+        Prints the list of habitable planets
+        Param: none
+        Returns: none
+        """
+
+        habitable_planets = self.createHabitablePlanetList()
+        print("The habitable planets (by Solar Equivalent AU) found in this database are")
+        for planet in habitable_planets:
+            print(planet)
+
+    def setGoldilocks(self, in_goldilocks, planet_name):
+        """
+        Takes planet name and sets corresponding in_goldilocks value to given boolean
+        """
+        cursor = self.connection.cursor()
+        if in_goldilocks == 'NULL':
+            query = "UPDATE exoplanet_data SET in_goldilocks=NULL WHERE planet_name=%s;"
+            cursor.execute(query, (planet_name,))
+        else:
+            query = "UPDATE exoplanet_data SET in_goldilocks=%s WHERE planet_name=%s;"
+            cursor.execute(query, (in_goldilocks, planet_name,))
+        self.connection.commit()
+
