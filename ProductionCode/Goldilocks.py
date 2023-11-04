@@ -83,9 +83,9 @@ class Goldilocks_Determiner:
         """
         Takes planet name and returns true or false depending on if it is in the goldilocks zone
         """
-        if self.getGoldilocksValue(planet_name)[0][0] == True:
+        if self.dataSource.getGoldilocksValue(planet_name)[0][0] == True:
             return True
-        elif self.getGoldilocksValue(planet_name)[0][0] == False:
+        elif self.dataSource.getGoldilocksValue(planet_name)[0][0] == False:
             return False
         else:
             return None
@@ -102,15 +102,6 @@ class Goldilocks_Determiner:
             query = "UPDATE exoplanet_data SET in_goldilocks=%s WHERE planet_name=%s;"
             cursor.execute(query, (in_goldilocks, planet_name,))
         self.dataSource.connection.commit()
-
-    def getGoldilocksValue(self, planet_name):
-        """
-        Takes planet name and returns corresponding in_goldilocks value
-        """
-        cursor = self.dataSource.connection.cursor()
-        query = "SELECT in_goldilocks FROM exoplanet_data WHERE planet_name=%s;"
-        cursor.execute(query, (planet_name,))
-        return cursor.fetchall()
     
     def get_goldilocks_zone(self, planet_name):
         """

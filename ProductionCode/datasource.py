@@ -157,6 +157,21 @@ class DataSource:
         except Exception as e:
             print ("Something went wrong when executing the query: ", e)
             return None
+
+    def getGoldilocksValue(self, planet_name):
+        """
+        Takes planet name and returns corresponding in_goldilocks value
+        """
+        try:
+            cursor = self.dataSource.connection.cursor()
+            query = "SELECT in_goldilocks FROM exoplanet_data WHERE planet_name=%s;"
+            cursor.execute(query, (planet_name,))
+            return cursor.fetchall()
+
+        #Failsafe in case of any problems
+        except Exception as e:
+            print ("Something went wrong when executing the query: ", e)
+            return None
     
     def verify_name_in_database(self, planet_name):
         """
