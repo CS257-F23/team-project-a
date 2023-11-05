@@ -1,5 +1,4 @@
 import unittest
-import math
 from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.Goldilocks import Goldilocks_Determiner
 
@@ -34,15 +33,19 @@ class TestGoldilocks(unittest.TestCase):
         into get_sm_axis returns the integer -1
         """
         #a planet which does not have this data should return -1
-        self.assertEqual()
+        planet_name = "CI Tau b"
+        det_sm = self.determiner.get_sm_axis(planet_name)
+        self.assertEqual(det_sm, -1)
 
     def test_det_gold_inner_valid(self):
         """
-        Test that inputting a planet that has data for stellar luminosity
-        into determine_goldilocks_inner returns the corretly computed inner bound
+        Test that inputting a star that has data for stellar luminosity
+        into determine_goldilocks_inner returns the correctly computed inner bound
         """
-        #example taken from /website/
-        self.assertEqual()
+        # example from https://www.planetarybiology.com/calculating_habitable_zone.html
+        planet_name = "Kepler-22 b"
+        #using rounding equals because no websites report as many sig figs
+        self.assertEqual(round(self.determiner.determine_goldilocks_inner(planet_name), 2), 0.77)
 
     def test_det_gold_inner_invalid(self):
         """
@@ -54,11 +57,13 @@ class TestGoldilocks(unittest.TestCase):
 
     def test_det_gold_outer_valid(self):
         """
-        Test that inputting a planet that has data for stellar luminosity
-        into determine_goldilocks_outer returns the corretly computed outer bound
+        Test that inputting a star that has data for stellar luminosity
+        into determine_goldilocks_outer returns the correctly computed outer bound
         """
-        #example taken from /website/
-        self.assertEqual()
+        # example from https://www.planetarybiology.com/calculating_habitable_zone.html
+        planet_name = "Kepler-22 b"
+        #using rounding equals because no websites report as many sig figs
+        self.assertEqual(round(self.determiner.determine_goldilocks_outer(planet_name), 1), 1.1)
 
     def test_det_gold_outer_invalid(self):
         """
@@ -118,9 +123,44 @@ class TestGoldilocks(unittest.TestCase):
         planet_name = 'HIP 79098 AB b'
         expected_return = 'Unfortunately, the database does not contain sufficient information to determine if HIP 79098 AB b is in the goldilocks zone (by Solar Equivalent AU).'
         self.assertEqual(self.determiner.get_goldilocks_zone(planet_name), expected_return)
-        
+
+    def test_create_habitable_list_validIn(self):
+        """
+        Test that create_habitable_list includes 
+        a planet which is known to be in it's habitable zone
+        """
+        planet_name= 'TRAPPIST-1 e'
+        result = self.determiner.create_habitable_list()
+        self.assertIn(planet_name, result)
+    
+    def test_create_habitable_list_validOut(self):
+        """
+        Test that create_habitable_list doesnt return 
+        a planet which is known to not be in the habitable zone
+        """
+        planet_name= 'HATS-1 b'
+        result = self.determiner.create_habitable_list()
+        self.assertNotIn(planet_name, result)
+    
+    def test_create_habitable_list_validUnclear(self):
+        """
+        Test that create_habitable_list doesn't includes a planet for which 
+        we are missing data needed to determine if it is in the habitable zone
+        """
+        planet_name= 'HIP 79098 AB b'
+        result = self.determiner.create_habitable_list()
+        self.assertNotIn(planet_name, result)
+    
+    def test_create_habitable_list_invalid(self):
+        """
+        Test that create_habitable_list doesn't return 
+        a fake planet which is not in the dataset
+        """
+        planet_name= 'Exo-78 r'
+        result = self.determiner.create_habitable_list()
+        self.assertNotIn(planet_name, result)
+
 # TO TEST: 
-#          create_habitable_list: 2 cases, in and out
 #          print_habitable_list: 2 cases, in and out
 
 
