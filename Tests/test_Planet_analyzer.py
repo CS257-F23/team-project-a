@@ -129,4 +129,3 @@ class TestGetFormattedPlanetInfo(unittest.TestCase):
         self.assertRaises(KeyError, self.analyzer.get_formatted_planet_info, "      ")
 
 
-#NICHOLAS I AM DUMB SOMETIMES

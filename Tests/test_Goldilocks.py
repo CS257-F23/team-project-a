@@ -1,4 +1,8 @@
 import unittest
+from unittest.mock import patch
+import io
+# testing print_habitable_list functions based on 
+# model from https://donofden.com/blog/2020/02/13/testing-python-input-print-and-exclude-main-function-from-coverage
 from ProductionCode.Exoplanet_Data_Loader import data_loader
 from ProductionCode.Goldilocks import Goldilocks_Determiner
 
@@ -160,8 +164,41 @@ class TestGoldilocks(unittest.TestCase):
         result = self.determiner.create_habitable_list()
         self.assertNotIn(planet_name, result)
 
-# TO TEST: 
-#          print_habitable_list: 2 cases, in and out
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    def test_print_habitable_list_validIn(self, mock_stdout):
+        planet_name = 'TRAPPIST-1 e'
+        self.determiner.print_habitable_list()
+        self.assertIn(planet_name, mock_stdout.getvalue())
+    
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    def test_print_habitable_list_validOut(self,  mock_stdout):
+        """
+        Test that print_habitable_list doesnt return 
+        a planet which is known to not be in the habitable zone
+        """
+        planet_name= 'HATS-1 b'
+        self.determiner.print_habitable_list()
+        self.assertNotIn(planet_name, mock_stdout.getvalue())
+    
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    def test_print_habitable_list_validUnclear(self,  mock_stdout):
+        """
+        Test that print_habitable_list doesn't includes a planet for which 
+        we are missing data needed to determine if it is in the habitable zone
+        """
+        planet_name= 'HIP 79098 AB b'
+        self.determiner.print_habitable_list()
+        self.assertNotIn(planet_name, mock_stdout.getvalue())
+    
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    def test_print_habitable_list_invalid(self,  mock_stdout):
+        """
+        Test that print_habitable_list doesn't return 
+        a fake planet which is not in the dataset
+        """
+        planet_name= 'Exo-78 r'
+        self.determiner.print_habitable_list()
+        self.assertNotIn(planet_name, mock_stdout.getvalue())
 
 
 
