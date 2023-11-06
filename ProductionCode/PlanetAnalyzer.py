@@ -23,11 +23,11 @@ class exoplanetAnalyzer:
                     "Galactic Latitude: ", "Galactic Longitude: "]
         
         formatedInfoString = "Planet Info \n\n"
-        s = 0
+        list_position = 0
         #Creates a big string, one label and variable a line
-        while (s <= 14):
-            formatedInfoString = formatedInfoString + str(infoList[s]) + str(exoplanetInfo[s]) + "\n"
-            s += 1 
+        while (list_position <= 14):
+            formatedInfoString = formatedInfoString + str(infoList[list_position]) + str(exoplanetInfo[list_position]) + "\n"
+            list_position += 1 
         return formatedInfoString
     
     def format_info_for_list(self, exoplanetInfo):
@@ -45,10 +45,10 @@ class exoplanetAnalyzer:
                     "Galactic Latitude: ", "Galactic Longitude: "]
         
         formatedInfoList = ["Planet Info"]
-        s = 0
-        while (s <= 14):
-            formatedInfoList.append(str(infoList[s] + str(exoplanetInfo[s])))
-            s += 1 
+        list_position = 0
+        while (list_position <= 14):
+            formatedInfoList.append(str(infoList[list_position] + str(exoplanetInfo[list_position])))
+            list_position += 1 
         return formatedInfoList
 
     def get_formatted_planet_info_list(self, planet_name):

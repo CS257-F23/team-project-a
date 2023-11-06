@@ -50,19 +50,21 @@ class DataSource:
         mergedInfoList = []
         #The info from exoplanet_data and star_data must be added in a particular order
         #to match how the planet info page wants it 
-        mergedInfoList.append(databasePlanetList[0][0])
-        mergedInfoList.append(databaseStarList[0][1])
-        mergedInfoList.append(databaseStarList[0][2])
-        mergedInfoList.append(databaseStarList[0][3])
-        i = 1
-        while i < 7:
-            mergedInfoList.append(databasePlanetList[0][i])
-            i = i + 1
-        mergedInfoList.append(databaseStarList[0][4])
-        mergedInfoList.append(databaseStarList[0][5])
-        mergedInfoList.append(databaseStarList[0][6])
-        mergedInfoList.append(databasePlanetList[0][7])
-        mergedInfoList.append(databasePlanetList[0][8])
+        mergedInfoList.append(databasePlanetList[0][0]) #Planet name
+        mergedInfoList.append(databaseStarList[0][1]) #Host (star) name
+        mergedInfoList.append(databaseStarList[0][2]) #Number of stars
+        mergedInfoList.append(databaseStarList[0][3]) #Number of planets
+        mergedInfoList.append(databasePlanetList[0][1]) #Discovery method
+        mergedInfoList.append(databasePlanetList[0][2]) #Discovery year
+        mergedInfoList.append(databasePlanetList[0][3]) #Discovery facility 
+        mergedInfoList.append(databasePlanetList[0][4]) #Semi-major axis
+        mergedInfoList.append(databasePlanetList[0][5]) #Planet radius
+        mergedInfoList.append(databasePlanetList[0][6]) #Planet mass
+        mergedInfoList.append(databaseStarList[0][4]) #Stellar radius
+        mergedInfoList.append(databaseStarList[0][5]) #Stellar mass
+        mergedInfoList.append(databaseStarList[0][6]) #Stellar luminosity
+        mergedInfoList.append(databasePlanetList[0][7]) #Galactic latitude 
+        mergedInfoList.append(databasePlanetList[0][8]) #Galactic longitude 
 
         return mergedInfoList
 
@@ -196,6 +198,8 @@ class DataSource:
     def createPlanetList (self):
         '''
         Creates and returns a list of all planets in the database.
+        Param: none
+        Returns: list
         '''
         cursor = self.connection.cursor()
         query = "SELECT planet_name FROM exoplanet_data;"
@@ -249,6 +253,8 @@ class DataSource:
     def setGoldilocks(self, in_goldilocks, planet_name):
         """
         Takes planet name and sets corresponding in_goldilocks value to given boolean
+        Params: boolean, string
+        Returns: none
         """
         cursor = self.connection.cursor()
         if in_goldilocks == 'NULL':

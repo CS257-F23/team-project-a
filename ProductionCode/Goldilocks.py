@@ -18,8 +18,9 @@ class Goldilocks_Determiner:
         Return: float
         """
         host_info = self.dataSource.getHostInfo(star_id)
-        if host_info[0][6] != None:
-            stellar_lum = 10 ** float(host_info[0][6])
+        unformatted_stellar_lum = host_info[0][6]
+        if unformatted_stellar_lum != None:
+            stellar_lum = 10 ** float(unformatted_stellar_lum)
             return float(stellar_lum)
         else:
             return 0 # if no data available, keeps planet out of zone
@@ -31,8 +32,8 @@ class Goldilocks_Determiner:
         Returns: float
         """
         planet_info = self.dataSource.getPlanetInfo(planet_name)
-        if planet_info[7] != None:
-            sm_axis = planet_info[7]
+        sm_axis = planet_info[7]
+        if sm_axis != None:
             return float(sm_axis)
         else:
             return -1 # if no data available, keeps planet out of zone
@@ -82,6 +83,8 @@ class Goldilocks_Determiner:
     def is_in_goldilocks_zone(self, planet_name):
         """
         Takes planet name and returns true or false depending on if it is in the goldilocks zone
+        Param: string
+        Returns: boolean
         """
         if self.dataSource.getGoldilocksValue(planet_name) == True:
             return True
@@ -111,9 +114,9 @@ class Goldilocks_Determiner:
         Param: none
         Returns: none
         """
-        i = 1
+        planet_count = 1
         total_number_of_planets = 5524
-        while i < total_number_of_planets:
+        while planet_count < total_number_of_planets:
             current_planet = self.dataSource.getPlanetNameFromId(i)
             if self.determine_in_goldilocks_zone(current_planet):
                 self.dataSource.setGoldilocks(True, current_planet)
@@ -121,4 +124,4 @@ class Goldilocks_Determiner:
                 self.dataSource.setGoldilocks('NULL', current_planet)
             else:
                 self.dataSource.setGoldilocks(False, current_planet)
-            i = i + 1
+            planet_count = planet_count + 1
