@@ -103,7 +103,7 @@ class Goldilocks_Determiner:
         if self.is_in_goldilocks_zone(planet_name):
             return(planet_name + ' is in the goldilocks zone! (by Solar Equivalent AU)')
         elif self.is_in_goldilocks_zone(planet_name) == None:
-            string_to_return = str('Unfortunately, the database does not contain sufficient information to determine if ' + planet_name + ' is in the goldilocks zone (by Solar Equivalent AU).')
+            string_to_return = str('Unfortunately, the database does not contain sufficient information to determine if ' + planet_name + ' is in the goldilocks zone')
             return(string_to_return)
         else:
             return(planet_name + ' is not in the goldilocks zone (by Solar Equivalent AU).')

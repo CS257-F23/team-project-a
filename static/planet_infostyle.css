@@ -152,7 +152,7 @@ li {
   line-height: 1.75;
 }
 
-div.leftColumn{
+div.leftColumn {
   padding-top: 10px;
   display: flex;
   float: left;
@@ -166,15 +166,15 @@ div.leftColumn div.goldilocks_info {
   border-color: rgb(0, 0, 94);
   text-align: center;
   width: 45%;
-  height: 100px;
+  height: 130px;
   padding: 5px;
 }
 
 div.leftcolumn img {
-  padding-top: 125px;
-  position: absolute;
+  padding-top: 180px;
+  position: center;
   display: block;
-  width: 45.7%;
+  width: 100%;
 }
 
 div.rightColumn {

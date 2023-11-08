@@ -61,7 +61,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="leftColumn">
       <div class="goldilocks_info">
         <p>{{goldilocks_result}}</p>
@@ -70,10 +70,9 @@
 
       <img src={{ url_for('static', filename='photos/generic_exoplanet.jpg') }}
       alt="Computer rendering of an exoplanet" />
-      
     </div>
 
-    <div class="rightColumn" >
+    <div class="rightColumn">
       <div class="planet_info">
         <ul>
           {%for item in planet_info%}
@@ -81,11 +80,10 @@
           {% endfor %}
         </ul>
       </div>
-  
+
       <div class="randomize_button">
         <a href="/random_planet" class="button">Randomize!</a>
       </div>
     </div>
-
   </body>
 </html>
