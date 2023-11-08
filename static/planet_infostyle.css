@@ -219,8 +219,7 @@ div.rightColumn .button {
 
 /* This means "apply this style to h1 and h2 tags" */
 h1,
-h2,
-h3 {
+h2 {
   font-family: Verdana, Geneva, sans-serif;
   text-align: center;
 }
