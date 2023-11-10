@@ -134,6 +134,18 @@ def planet_info():
     else:
         return "Not a valid request protocol"
 
+#Route for errors
+@app.errorhandler(404)
+def page_not_found(e):
+    """Returns an error message"""
+    return render_template('404.html')
+
+#Route for errors
+@app.errorhandler(500)
+def python_bug(e):
+    """Returns and error message"""
+    return render_template('500.html')
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
