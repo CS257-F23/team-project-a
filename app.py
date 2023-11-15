@@ -132,7 +132,7 @@ def planet_info():
         return render_template ('planet_info.html', planet_name = planet_name, 
                             planet_info = exoplanet_info, planet_list= planet_list, goldilocks_result= goldilocks_result)
     else:
-        return "Not a valid request protocol"
+        return render_template('404.html')
 
 #Route for errors
 @app.errorhandler(404)
