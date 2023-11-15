@@ -1,15 +1,15 @@
 <html>
-    <head>
-        <title>{uh-oh}</title>
-        <h1>You're far out in space, buddy!</h1>
+  <head>
+    <title>{uh-oh}</title>
+    <h1>You're far out in space, buddy!</h1>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='404_style.css') }}"
+    />
+  </head>
+  <body>
+    <p>The url you requested could not be found.</p>
 
-
-    </head>
-    <body>
-        <p>
-            The url you requested could not be found. 
-        </p>
-
-        <p> <a href ="/">Return to home page</a></p>
-    </body>
+    <p><a href="/">Return to home page</a></p>
+  </body>
 </html>

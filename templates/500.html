@@ -1,13 +1,17 @@
+<!-- Your HTML with updated CSS link -->
 <html>
-   <head>
-      <title>{uh-oh}</title>
-      <h1>Houston, we have a problem</h1>
-
-
-   </head>
-   <body>
-      <p>
-            The server encountered and unexpected error and could not complete your request.
-      </p>
-   </body>
+  <head>
+    <title>{uh-oh}</title>
+    <h1>Houston, we have a problem</h1>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='500_style.css') }}"
+    />
+  </head>
+  <body>
+    <p>
+      The server encountered and unexpected error and could not complete your
+      request.
+    </p>
+  </body>
 </html>
