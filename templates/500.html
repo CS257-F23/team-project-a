@@ -1,8 +1,80 @@
-<!-- Your HTML with updated CSS link -->
 <html>
   <head>
+    <!--Autocomplete scripts here and below obtained from https://www.geeksforgeeks.org/autocomplete-input-suggestion-using-python-and-flask/-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+    <link
+      href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>{{title}}</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+
+    <link
+      href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='500_style.css') }}"
+    />
+  </head>
+
+  <body>
+    <h1>Error 500</h1>
+
+    <div class="navbar">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/learn">Learn</a>
+      <div class="dropdown">
+        <button class="dropbtn">
+          Planets
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="/available_planets">Available Planets</a>
+          <a href="/habitable_planets">Habitable Planets</a>
+          <a href="/random_planet">Random Planet</a>
+        </div>
+      </div>
+
+      <div class="topnav-right">
+        <div class="search_bar">
+          <form action="planet_info" method="post">
+            <label>Find Planet Info</label>
+            <input
+              type="text"
+              for="Find Planet Info"
+              id="planet_info"
+              name="planet_name"
+              placeholder="Planet Name"
+            />
+            <script>
+              $(function() {
+                var availableTags = [
+                  {% for planet in planet_list %}
+                  "{{planet}}",
+                  {% endfor %}
+                ];
+                $("#planet_info").autocomplete({
+                  source: availableTags
+                });
+              });
+            </script>
+            <input type="submit" value="Search" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+  <head>
     <title>{uh-oh}</title>
-    <h1>Houston, we have a problem</h1>
+    <h2>Houston, we have a problem</h2>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='500_style.css') }}"
@@ -10,8 +82,10 @@
   </head>
   <body>
     <p>
-      The server encountered and unexpected error and could not complete your
-      request.
+      The server encountered an unexpected error and could not complete your
+      request. If you are trying to find planet info for a specific planet, this
+      could mean that the entered planet is not in our database. Try checking
+      the available planets page to see possible options.
     </p>
   </body>
 </html>
