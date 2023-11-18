@@ -1,60 +1,29 @@
 <html>
-  <head>
-    <title>{uh-oh}</title>
-    <h1>You're far out in space, buddy!</h1>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='404_style.css') }}"
-    />
-  </head>
-  <body><body>
+    <head>
+        <title>{uh-oh}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='aboutstyle.css') }}">
+        
 
-    <div class="navbar">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/learn">Learn</a>
-      <div class="dropdown">
-        <button class="dropbtn">
-          Planets
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="/available_planets">Available Planets</a>
-          <a href="/habitable_planets">Habitable Planets</a>
-          <a href="/random_planet">Random Planet</a>
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/learn">Learn</a>    
         </div>
-      </div>
+        
+        <h1>You're far out in space, buddy!</h1> 
 
-      <div class="topnav-right">
-        <div class="search_bar">
-          <form action="planet_info" method="post">
-            <label>Find Planet Info</label>
-            <input
-              type="text"
-              for="Find Planet Info"
-              id="planet_info"
-              name="planet_name"
-              placeholder="Planet Name"
-            />
-            <script>
-              $(function() {
-                var availableTags = [
-                  {% for planet in planet_list %}
-                  "{{planet}}",
-                  {% endfor %}
-                ];
-                $("#planet_info").autocomplete({
-                  source: availableTags
-                });
-              });
-            </script>
-            <input type="submit" value="Search" />
-          </form>
-        </div>
-      </div>
-    </div>
-    <p>The url you requested could not be found.</p>
+        <p>
+            The url you requested could not be found. 
+            Please retype it using one of the following formats, replacing quoted items with 
+            the planet you'd like to learn about:
+        </p>
 
-    <p><a href="/">Return to home page</a></p>
-  </body>
+        <ul>
+            <li>/planet_info/"Planet Name"</li>
+            <li>/check_goldilocks/"Planet Name"</li>
+        </ul>
+        <a href ="/">Return to home page</a>
+    </body>
 </html>
