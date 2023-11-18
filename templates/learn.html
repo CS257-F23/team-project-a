@@ -1,0 +1,102 @@
+<html>
+    <head>
+            <!--Autocomplete scripts here and below obtained from https://www.geeksforgeeks.org/autocomplete-input-suggestion-using-python-and-flask/-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"> </script>   
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"> </script>
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+                rel="stylesheet" type="text/css" />
+        <title>{{title}}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">   
+        </script>   
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">   
+        </script>   
+        
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+            rel="stylesheet" type="text/css" />   
+
+    
+        <link rel="stylesheet" href="{{ url_for('static', filename='learn_style.css') }}">
+    </head>
+    <body>
+        <h1>Learning About The Goldilocks Zone</h1>
+        <div class="navbar">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/learn">Learn</a>
+            <div class="dropdown">
+              <button class="dropbtn">
+                Planets
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="/available_planets">Available Planets</a>
+                <a href="/habitable_planets">Habitable Planets</a>
+                <a href="/random_planet">Random Planet</a>
+              </div>
+            </div>
+      
+            <div class="topnav-right">
+              <div class="search_bar">
+                <form action="planet_info" method="post">
+                  <label>Find Planet Info</label>
+                  <input
+                    type="text"
+                    for="Find Planet Info"
+                    id="planet_info"
+                    name="planet_name"
+                    placeholder="Planet Name"
+                  />
+                  <script>
+                    $(function() {
+                      var availableTags = [
+                        {% for planet in planet_list %}
+                        "{{planet}}",
+                        {% endfor %}
+                      ];
+                      $("#planet_info").autocomplete({
+                        source: availableTags
+                      });
+                    });
+                  </script>
+                  <input type="submit" value="Search" />
+                </form>
+              </div>
+            </div>
+          </div>
+
+        <div class="what">
+            <h2>
+                What is the Goldilocks Zone?
+            </h2>
+            <p>
+                Life, as we know it, requires liquid water. And for water on a planet to
+                remain liquid, that planet has to reside within a certain distance from the star
+                it's orbiting. If it's too close, all water on it boils. If it's too far, 
+                all water freezes. Thus, the distance has to be just right- and that's 
+                why scientists have dubbed the range of such distances the "Goldilocks Zone."
+            </p>
+        </div>
+        <div class="how">
+            <h2>
+              How did we determine the Goldilocks Zone?
+            </h2>
+            <p>
+                Scientists disagree on the size of the Goldilocks Zone, even 
+                for our own solar system. Thus, many ways of calculating whether a planet
+                is in it have emerged. Our website uses the Solar Equivalent AU equation, which works
+                by comparing a given star to our own sun.
+                The equations we used are from 
+                <a href="https://www.bbvaopenmind.com/en/science/physics/planetary-systems-and-the-habitable-zone/">bbvaopenmind.com</a>
+                and 
+                <a href="https://www.planetarybiology.com/calculating_habitable_zone.html">planetarybiology.com</a></li>,
+                and essentially the idea is to assume that since the Earth is in the Sun's goldilocks zone,
+                and we know where the sun's habitable zone begins and ends, we can approximate the habitable zone of
+                any other star using it's absolute stellar luminosity, which is a measurement of how much energy that star gives off
+                per second. If we compare this to the sun's stellar luminosity, we can use our data for how big the sun's goldilocks zone
+                is to scale the goldilocks zone of that star. Then, to determine if a planet is in that sun's goldilocks zone,
+                we just use the semi-major axis, which is a measurement of how close that planet orbits to it's star,
+                and see if it is in the star's goldilocks zone.
+            </p>
+        </div>
+    </body>

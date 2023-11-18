@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <!--Autocomplete scripts here and below obtained from https://www.geeksforgeeks.org/autocomplete-input-suggestion-using-python-and-flask/-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+    <link
+      href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>{{title}}</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+
+    <link
+      href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='homepagestyle.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Exoplanets!</h1>
+
+    <div class="navbar">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/learn">Learn</a>
+      <div class="dropdown">
+        <button class="dropbtn">
+          Planets
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="/available_planets">Available Planets</a>
+          <a href="/habitable_planets">Habitable Planets</a>
+          <a href="/random_planet">Random Planet</a>
+        </div>
+      </div>
+      <div class="topnav-right">
+        <div class="search_bar">
+          <form action="planet_info" method="post">
+            <label for="planet_info">Find Planet Info</label>
+            <input
+              type="text"
+              for="Find Planet Info"
+              id="planet_info"
+              name="planet_name"
+              placeholder="Planet Name"
+            />
+            <script>
+              $(function() {
+                var availableTags = [
+                  {% for planet in planet_list %}
+                  "{{planet}}",
+                  {% endfor %}
+                ];
+                $("#planet_info").autocomplete({
+                  source: availableTags
+                });
+              });
+            </script>
+            <input type="submit" value="Search" />
+          </form>
+        </div>
+      </div>
+    </div>
+    <p>
+      Welcome to the Exoplanet Info Getter! Search a planet to learn more about
+      it or click through our other pages to explore the wonderful world (or
+      worlds :) of exoplanets.
+    </p>
+
+    <img
+      src="../static/photos/exoplanet_with_rings.jpg"
+      alt="Computer rendering of a blue exoplanet with rings"
+    />
+
+    <div class="examples">
+      <h2>What are exoplanets?</h2>
+      <p>
+        An exoplanet is a planet that is not in our solar system. To this date,
+        NASA has confirmed the existance of 5,528 exoplanets, with more being
+        discovered daily. Our website contains information about almost all of
+        these, so explore to your heart's content.
+      </p>
+    </div>
+    <div class="examples">
+      <h2>Why should I care about exoplanets?</h2>
+      <p>
+        In addition to being cool, scientists study exoplanets to look for ones
+        that could support life, either to find extraterrestrials or a future
+        home for us. Potentially habitable planets reside within their star'
+        "Goldilocks Zone."
+      </p>
+    </div>
+    <div class="examples">
+      <h2>The Goldilocks Zone</h2>
+      <p>
+        Life, as we know it, requires liquid water. And for water on a planet to
+        remain liquid, that planet has to reside within a certain distance from
+        the star it's orbiting. If it's too close, all water on it boils. If
+        it's too far, all water freezes. Thus, the distance has to be just
+        right- and that's why scientists have dubbed the range of such distances
+        the "Goldilocks Zone."
+      </p>
+    </div>
+  </body>
+</html>

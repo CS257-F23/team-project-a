@@ -1,0 +1,181 @@
+h1 {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  /* background-color: rgb(63, 18, 188); */
+  background-image: url("photos/stars.jpg");
+  color: white;
+  text-align: center;
+}
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
+  height: 45px;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: rgb(0, 0, 94);
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.topnav-right {
+  float: right;
+}
+
+/* Styles for the search bar container */
+.search_bar {
+  padding: 1px;
+  border-radius: 1px;
+  width: 400px;
+  margin: 0 auto;
+  text-align: right;
+}
+
+/* Styles for the form and its contents */
+.search_bar form {
+  display: flex;
+  padding-top: 10px;
+}
+
+/* Styles for the label */
+.search_bar label {
+  color: white;
+  padding: 3px 5px;
+  padding-left: 0px;
+  height: 5px;
+  width: 500px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Styles for the input field */
+.search_bar input[type="text"] {
+  width: 200%;
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Styles for the submit button */
+.search_bar input[type="submit"] {
+  background-color: rgb(0, 0, 94);
+  color: white;
+  border: none;
+  border-radius: 1px;
+  padding: 3px 18px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Styles for the autocomplete dropdown (assuming it has a class) */
+.ui-autocomplete {
+  max-height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute;
+}
+
+body {
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: rgb(201, 210, 250);
+}
+
+img {
+  float: left;
+  width: 35%;
+}
+
+div.examples {
+  background-color: azure;
+  width: 650px;
+  border: 2px solid rgb(0, 0, 94);
+  float: right;
+  padding: 10px;
+  margin: 10px;
+}
+
+/* This means "apply this style to h1 and h2 tags" */
+h1,
+h2 {
+  font-family: Verdana, Geneva, sans-serif;
+  text-align: center;
+}
+
+p {
+  font-family: Verdana, Geneva, sans-serif;
+  /* This next line gives us some extra spacing within a paragraph*/
+  line-height: 1.4;
+}
+
+li {
+  font-family: Verdana, Geneva, sans-serif;
+  line-height: 1.4;
+}
+
+nav li {
+  float: left;
+  font-size: 1.1em;
+  font-weight: bold;
+}
